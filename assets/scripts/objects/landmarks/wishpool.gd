@@ -78,7 +78,7 @@ func _interact() -> void:
 
 
 func _get_annotation_title() -> String:
-	return "WISHPOOL"
+	return tr(get_name_id()).to_upper()
 
 
 func _get_annotation_subtext() -> String:
