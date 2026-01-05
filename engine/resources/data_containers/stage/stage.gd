@@ -72,7 +72,7 @@ func _init(file: StageFile = null, size: Vector2i = Vector2i.ZERO, monsters: int
 
 
 func _get_name_id() -> String:
-	return file.name
+	return file.name if file else "stage.invalid"
 
 
 ## Returns the total area of this [Stage], i.e. the number of [Cell]s.
@@ -112,7 +112,7 @@ func _get_description_id() -> String:
 ## Returns a [Theme] instance for this [Stage], with all relevant properties set
 ## to this [Stage]'s theme.
 func get_theme() -> Theme:
-	return file.create_theme()
+	return file.create_theme() if file else null
 
 
 static func create_theme(stage_name: String) -> Theme:
@@ -147,7 +147,7 @@ static func create_theme(stage_name: String) -> Theme:
 
 
 func _get_bg() -> Texture2D:
-	return file.bg
+	return file.bg if file else null
 
 
 ## Reimplements [method StageBase.get_instance] for easy typing.
