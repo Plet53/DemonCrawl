@@ -8,6 +8,12 @@ static var _selected_locale := "en"
 @export_custom(PROPERTY_HINT_NONE, "", PROPERTY_USAGE_STORAGE) var data := {}
 # ==============================================================================
 
+## Picks a random [String] from the current locale and returns it.
+func pick_random() -> String:
+	var strings := get_strings()
+	return strings[randi() % strings.size()]
+
+
 func _get_property_list() -> Array[Dictionary]:
 	var property_list: Array[Dictionary] = [{
 		"name": "locale",

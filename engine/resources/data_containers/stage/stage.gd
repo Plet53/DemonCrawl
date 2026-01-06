@@ -200,6 +200,10 @@ func get_mods_difficulty() -> int:
 	return difficulty
 
 
+func _generate_monster_name() -> String:
+	return file.monster_name_pool.pick_random()
+
+
 ## Returns a property of this [Stage].
 func get_property(section: String, key: String, default: Variant = null) -> Variant:
 	var cfg := ConfigFile.new()

@@ -42,3 +42,8 @@ func get_bg() -> Texture2D:
 	if not _bg:
 		_bg = _get_bg()
 	return _bg
+
+
+func _generate_monster_name() -> String:
+	Debug.log_error("Special stages are not allowed to have monsters.")
+	return ""
