@@ -20,7 +20,7 @@ func _interact() -> void:
 	if Quest.get_current().get_stats().coins < cost:
 		var handled := handle_fail()
 		if not handled:
-			Toasts.add_toast(tr("stranger.gambler.fail"), get_source())
+			Toasts.add_toast(tr("object.gambler.fail"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)
@@ -30,7 +30,7 @@ func _interact() -> void:
 
 
 func _activate() -> void:
-	Toasts.add_toast(tr("stranger.gambler.interact"), get_source())
+	Toasts.add_toast(tr("object.gambler.interact"), get_source())
 	
 	var cells := get_cell().get_stage_instance().get_cells().filter(func(cell: CellData) -> bool:
 		return cell.is_hidden() and (not cell.is_occupied() or cell.has_monster())
@@ -52,13 +52,13 @@ func _activate() -> void:
 
 
 func _get_annotation_title() -> String:
-	return tr("stranger.gambler").to_upper()
+	return tr("object.gambler").to_upper()
 
 
 func _get_annotation_subtext() -> String:
-	return "\"" + tr("stranger.gambler.description").format({
+	return "\"" + tr("object.gambler.description").format({
 		"cost": cost
-	}) + "\"\n" + tr("stranger.gambler.balance").format({
+	}) + "\"\n" + tr("object.gambler.balance").format({
 		"coins": coins
 	})
 
