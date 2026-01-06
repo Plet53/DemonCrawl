@@ -6,8 +6,8 @@ class_name Wishpool
 const FLASH_MATERIAL := preload("res://assets/scripts/objects/landmarks/flash.tres")
 const CHARGE_CELL_COUNT := 30
 # ==============================================================================
-var reward: WishpoolReward
-var charges: int
+@export var reward: WishpoolReward
+@export var charges: int
 # ==============================================================================
 
 func _get_name_id() -> String:
@@ -16,7 +16,7 @@ func _get_name_id() -> String:
 
 func _spawn():
 	while not reward:
-		reward = load("res://assets/loot_tables/wishpool_rewards.tres").generate()
+		reward = load("res://assets/loot_tables/wishpool_rewards.tres").generate().duplicate()
 	charges = 1
 
 	reward.init(self)
@@ -27,13 +27,16 @@ func _get_material() -> Material:
 
 
 func _enter_tree() -> void:
-	if get_parent() is not CellData or get_cell().is_hidden():
+	if get_quest() == null:
 		return
 
 	get_quest().get_attributes().property_changed.connect(_attribute_changed)
 
 
 func _exit_tree() -> void:
+	if get_quest() == null:
+		return
+	
 	if get_quest().get_attributes().property_changed.is_connected(_attribute_changed):
 		get_quest().get_attributes().property_changed.disconnect(_attribute_changed)
 
