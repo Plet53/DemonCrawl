@@ -18,7 +18,7 @@ func _interact() -> void:
 	if Quest.get_current().get_stats().coins < cost:
 		var handled := handle_fail()
 		if not handled:
-			Toasts.add_toast(tr("stranger.priest.fail"), get_source())
+			Toasts.add_toast(tr("object.priest.fail"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)
@@ -37,11 +37,11 @@ func _activate() -> void:
 
 
 func _get_annotation_title() -> String:
-	return tr("stranger.priest").to_upper()
+	return tr("object.priest").to_upper()
 
 
 func _get_annotation_subtext() -> String:
-	return "\"" + tr("stranger.priest.description").format({
+	return "\"" + tr("object.priest.description").format({
 		"cost": cost
 	}) + "\""
 

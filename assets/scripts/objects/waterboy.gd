@@ -60,11 +60,11 @@ func _interact() -> void:
 	if Quest.get_current().get_stats().coins < cost:
 		var handled := handle_fail()
 		if not handled:
-			Toasts.add_toast(tr("stranger.waterboy.fail"), get_source())
+			Toasts.add_toast(tr("object.waterboy.fail"), get_source())
 		return
 	
 	if not can_move():
-		Toasts.add_toast(tr("stranger.waterboy.move.fail"), get_source())
+		Toasts.add_toast(tr("object.waterboy.move.fail"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)
@@ -80,11 +80,11 @@ func _activate() -> void:
 
 
 func _get_annotation_title() -> String:
-	return tr("stranger.waterboy").to_upper()
+	return tr("object.waterboy").to_upper()
 
 
 func _get_annotation_subtext() -> String:
-	return "\"" + tr("stranger.waterboy.description").format({
+	return "\"" + tr("object.waterboy.description").format({
 		"cost": cost
 	}) + "\""
 

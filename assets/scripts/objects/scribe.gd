@@ -26,7 +26,7 @@ func _interact() -> void:
 	if Quest.get_current().get_stats().coins < cost:
 		var handled := handle_fail()
 		if not handled:
-			Toasts.add_toast(tr("stranger.scribe.fail"), get_source())
+			Toasts.add_toast(tr("object.scribe.fail"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)
@@ -49,11 +49,11 @@ func _activate() -> void:
 
 
 func _get_annotation_title() -> String:
-	return tr("stranger.scribe").to_upper()
+	return tr("object.scribe").to_upper()
 
 
 func _get_annotation_subtext() -> String:
-	return "\"" + tr("stranger.scribe.%s.description" % Type.find_key(type).to_lower()).format({
+	return "\"" + tr("object.scribe.%s.description" % Type.find_key(type).to_lower()).format({
 		"cost": cost,
 		"slot_count": Codex.get_heirloom_slots()
 	}) + "\""
