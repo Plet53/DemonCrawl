@@ -496,10 +496,6 @@ func get_remaining_monster_count() -> int:
 	return monsters
 
 
-func was_reloaded() -> bool:
-	return false # TODO
-
-
 func get_time() -> int:
 	return get_timer().get_time()
 

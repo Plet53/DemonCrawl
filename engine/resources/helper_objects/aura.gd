@@ -6,7 +6,7 @@ class_name Aura
 # ==============================================================================
 
 func _ready() -> void:
-	if Eternity.get_processing_file() != null:
+	if Eternity.get_current_loader() != null:
 		return
 	
 	_spawn()

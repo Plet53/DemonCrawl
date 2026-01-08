@@ -58,10 +58,10 @@ func _property_get_revert(property: StringName) -> Variant:
 
 ## Creates a new [Mastery] for this [MasteryData].
 func create(level: int = 0, charges: int = 0) -> Mastery:
-	return mastery_script.new(instantiate(level, charges))
+	return instantiate(level, charges).create()
 
 
-## Creates a [MasteryInstanceData] for this [MasteryData]
+## Creates a [MasteryInstanceData] for this [MasteryData].
 func instantiate(level: int = 0, charges: int = 0) -> MasteryInstanceData:
 	return MasteryInstanceData.new(self, level, charges)
 
