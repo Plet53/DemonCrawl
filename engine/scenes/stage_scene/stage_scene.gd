@@ -146,26 +146,6 @@ func _on_finish_button_pressed() -> void:
 	await _finish_popup.popup()
 	
 	stage_instance.finish()
-	
-	#var quest := Quest.get_current()
-	#stage_instance.notify_unloaded()
-	#quest.notify_stage_finished(stage_instance)
-	
-	#if quest.is_finished():
-		#await quest.finish()
-		#
-		#Quest.clear_current()
-		#
-		#Eternity.save()
-		#
-		## TODO: send player to "quest finished" scene
-		#get_tree().change_scene_to_file("res://Engine/Scenes/MainMenu/MainMenu.tscn")
-		#
-		#return
-	#
-	#Eternity.save()
-	#
-	#get_tree().change_scene_to_file("res://Engine/Scenes/StageSelect/StageSelect.tscn")
 
 
 static func get_instance() -> StageScene:

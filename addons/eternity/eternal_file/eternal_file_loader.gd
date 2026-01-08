@@ -44,8 +44,6 @@ func clear() -> void:
 
 ## Loads the file at the given [param path].
 func load(path: String) -> EternalFile:
-	print("Loading from file at path '%s'" % path)
-	
 	if not FileAccess.file_exists(path):
 		return EternalFile.new()
 	

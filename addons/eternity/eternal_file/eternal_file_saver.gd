@@ -11,7 +11,7 @@ var _processing_owner_stack: Array[Object] = []
 
 var _rng := RandomNumberGenerator.new()
 var _file: EternalFile
-var _resources: Dictionary[int, Object] = {}
+var _resources: Dictionary[Object, int] = {}
 # ==============================================================================
 signal saved(path: String) ## Emitted when the file is saved to disk.
 # ==============================================================================
@@ -80,7 +80,12 @@ func _store_resource(value: Variant) -> Variant:
 
 func _prepare_resource_list() -> Array[Object]:
 	var resources: Array[Object] = []
-	for resource in _resources.values():
+	
+	for script in _file.get_scripts():
+		for key in _file.get_eternals(script):
+			_store_resource(_file.get_eternal(script, key))
+	
+	for resource in _resources:
 		if resource not in resources:
 			resources.append(resource)
 	
@@ -449,17 +454,17 @@ func _is_native_default_property(object: Object, property: StringName, value: Va
 
 
 func _resource_get_uid(resource: Object) -> int:
-	if resource not in _resources.values():
+	if resource not in _resources:
 		var id := _generate_unique_id()
-		_resources[id] = resource
+		_resources[resource] = id
 		return id
-	return _resources.find_key(resource)
+	return _resources[resource]
 
 
 func _generate_unique_id() -> int:
 	var uid := _rng.randi()
-	if uid in _resources:
-		return _generate_unique_id()
+	while uid in _resources.values():
+		uid = _rng.randi()
 	return uid
 
 

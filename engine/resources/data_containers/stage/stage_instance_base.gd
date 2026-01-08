@@ -13,8 +13,6 @@ signal finished()
 
 func _init() -> void:
 	_reloaded = Eternity.get_current_loader() != null
-	
-	tree_exited.connect(Eternity.save, CONNECT_DEFERRED)
 
 
 ## Notifies this stage that the player has entered this stage, or that the player

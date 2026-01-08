@@ -73,7 +73,6 @@ static func log_stack_event(message: String, color: Color = Color.WHITE, prefix:
 		print_rich("[color=#%s]● %s:%d @ %s() - %s[/color]" % [color.to_html(), stack[0].source, stack[0].line, stack[0].function, message])
 	
 	log_event("%s%s:%d @ %s() - %s" % [
-		Time.get_datetime_string_from_system().replace("T", " @ "),
 		prefix,
 		stack[0].source,
 		stack[0].line,

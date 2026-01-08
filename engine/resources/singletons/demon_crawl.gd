@@ -14,7 +14,7 @@ static func _static_init() -> void:
 	
 	await Promise.defer()
 	if OS.is_debug_build():
-		(Engine.get_main_loop() as SceneTree).node_added.connect(func(node: Node) -> void:
+		get_tree().node_added.connect(func(node: Node) -> void:
 			if "@" not in node.name:
 				return
 			var script := node.get_script() as Script
@@ -28,6 +28,8 @@ static func _static_init() -> void:
 			node.name = c
 		)
 	
+	get_tree().root.close_requested.connect(Eternity.save)
+	
 	_initialized = true
 
 
@@ -35,3 +37,7 @@ static func get_full_registry() -> Registry:
 	if not _full_registry:
 		_full_registry = load("res://assets/registry.tres")
 	return _full_registry
+
+
+static func get_tree() -> SceneTree:
+	return Engine.get_main_loop()
