@@ -4,8 +4,6 @@ extends ResourceNode
 class_name StageBase
 
 # ==============================================================================
-static var music_volume: float = Eternal.create(1.0, "settings")
-# ==============================================================================
 @export var locked := false : ## Whether the stage is locked.
 	set(value):
 		if locked == value:
@@ -23,8 +21,8 @@ static var music_volume: float = Eternal.create(1.0, "settings")
 		
 		emit_changed()
 # ==============================================================================
-var _icon_small: Texture2D = null : get = get_small_icon
-var _icon_large: Texture2D = null : get = get_large_icon
+var _icon_small: Texture2D = null
+var _icon_large: Texture2D = null
 # ==============================================================================
 
 ## Returns whether this is a special stage. Special stages are skipped when unlocking
@@ -186,6 +184,16 @@ func get_mods() -> Array[StageMod]:
 
 func _get_mods() -> Array[StageMod]:
 	return []
+
+
+## Generates a monster name (in the current locale).
+func generate_monster_name() -> String:
+	return _generate_monster_name()
+
+
+## Virtual method. Should return a random monster name. If the stage is not allowed
+## to have monsters, this method may also print an error and return an empty [String].
+@abstract func _generate_monster_name() -> String
 
 
 func _shrink(image: Image, new_size: int) -> Image:

@@ -31,7 +31,7 @@ func _export_packed() -> Array:
 
 
 func create() -> Mastery:
-	return data.create(level, charges)
+	return data.mastery_script.new(self)
 
 
 func get_name_text() -> String:

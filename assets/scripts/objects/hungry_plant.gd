@@ -39,7 +39,7 @@ func _interact() -> void:
 	if Quest.get_current().get_inventory().is_empty():
 		var handled := handle_fail()
 		if not handled:
-			Toasts.add_toast(tr("stranger.plant.fail"), get_source())
+			Toasts.add_toast(tr("object.plant.fail"), get_source())
 		return
 	
 	activate()
@@ -65,14 +65,14 @@ func _activate() -> void:
 
 
 func _get_annotation_title() -> String:
-	return tr("stranger.plant").to_upper()
+	return tr("object.plant").to_upper()
 
 
 func _get_annotation_subtext() -> String:
-	return "\"" + tr("stranger.plant.description") + "\"\n" + tr("stranger.plant.reward").format({
+	return "\"" + tr("object.plant.description") + "\"\n" + tr("object.plant.reward").format({
 		"v": current,
 		"max": maximum,
-		"reward": tr_n("stranger.plant.reward." + RewardType.find_key(type).to_lower(), "stranger.plant.reward." + RewardType.find_key(type).to_lower() + ".plural", reward_amount).format({
+		"reward": tr_n("object.plant.reward." + RewardType.find_key(type).to_lower(), "object.plant.reward." + RewardType.find_key(type).to_lower() + ".plural", reward_amount).format({
 			"amount": reward_amount
 		})
 	})

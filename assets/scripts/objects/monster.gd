@@ -5,13 +5,15 @@ class_name Monster
 ## A monster that attacks the player when revealed.
 
 # ==============================================================================
+@export var monster_name := ""
+# ==============================================================================
 
 func _get_name_id() -> String:
 	return "object.monster"
 
 
 func _spawn() -> void:
-	name = get_origin_stage().get_property("monsters", "names", ["???"]).pick_random()
+	monster_name = get_origin_stage().generate_monster_name()
 
 
 func _get_texture() -> Texture2D:
@@ -28,7 +30,7 @@ func _reveal_active() -> void:
 
 
 func _get_annotation_title() -> String:
-	return name
+	return monster_name
 
 
 func _aura_apply() -> void:

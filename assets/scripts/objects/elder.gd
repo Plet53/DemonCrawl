@@ -22,7 +22,7 @@ func _interact() -> void:
 	if get_quest().get_stats().coins < cost:
 		var handled := handle_fail()
 		if not handled:
-			Toasts.add_toast(tr("stranger.elder.fail"), get_source())
+			Toasts.add_toast(tr("object.elder.fail"), get_source())
 		return
 	
 	get_quest().get_stats().spend_coins(cost, self)
@@ -36,11 +36,11 @@ func _activate() -> void:
 
 
 func _get_annotation_title() -> String:
-	return tr("stranger.elder").to_upper()
+	return tr("object.elder").to_upper()
 
 
 func _get_annotation_subtext() -> String:
-	var subtext := "\"" + tr("stranger.elder.description").format({
+	var subtext := "\"" + tr("object.elder.description").format({
 		"cost": cost
 	})
 	if get_quest().get_mastery():

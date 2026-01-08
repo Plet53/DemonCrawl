@@ -496,10 +496,6 @@ func get_remaining_monster_count() -> int:
 	return monsters
 
 
-func was_reloaded() -> bool:
-	return false # TODO
-
-
 func get_time() -> int:
 	return get_timer().get_time()
 
@@ -514,6 +510,11 @@ func is_timer_paused() -> bool:
 
 ## Reimplements [method StageInstanceBase.get_scene] for easy typing.
 func get_scene() -> StageScene:
+	return super()
+
+
+## Reimplements [method StageInstanceBase.get_stage] for easy typing.
+func get_stage() -> Stage:
 	return super()
 
 

@@ -29,7 +29,7 @@ func _get_description() -> String:
 			continue
 		values[prop.name] = tr(str(get(prop.name)))
 	
-	return tr("stranger.nomad." + _get_script_name().to_snake_case().to_lower().replace("_", ".")).format(values)
+	return tr("object.nomad." + _get_script_name().to_snake_case().to_lower().replace("_", ".")).format(values)
 
 
 ## Returns the Nomad's description.
@@ -84,7 +84,7 @@ func perform() -> void:
 ## Virtual method. Override to change this offer's message (shown as a Toast) when
 ## the player attempts to perform this offer when they cannot. See also [method _can_perform].
 func _get_fail_message() -> String:
-	return tr("stranger.nomad." + _get_script_name().to_snake_case().to_lower().replace("_", "."))
+	return tr("object.nomad." + _get_script_name().to_snake_case().to_lower().replace("_", "."))
 
 
 ## Returns this offer's message to be displayed when the player attempts to perform

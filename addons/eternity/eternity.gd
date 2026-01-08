@@ -21,13 +21,14 @@ static var loaded: Signal :
 
 #static var _save_cfg: EternalFile = null
 
-static var _processing_cfg: EternalFile = null : get = get_processing_file
+static var _current_loader: EternalFileLoader = null : get = get_current_loader
+static var _current_saver: EternalFileSaver = null : get = get_current_saver
 static var _processing_owner: Object = null : get = get_processing_owner
 
 static var _initializer: Initializer :
 	get:
 		if _initializer == null:
-			_initializer = Initializer.new()
+			_initializer = await Initializer.new()
 		return _initializer
 # ==============================================================================
 
@@ -59,12 +60,10 @@ static func save(path_name: String = "") -> void:
 		return
 	
 	var file := EternalFile.new()
-	_processing_cfg = file
-	
-	file.clear()
 	
 	for script_class in get_defaults_cfg().get_scripts():
 		var script := UserClassDB.class_get_script(script_class)
+		_processing_owner = script
 		for key in get_defaults_cfg().get_eternals(script_class):
 			var name := key.get_slice("::", 0) if "::" in key else ""
 			if name != path_name:
@@ -87,9 +86,9 @@ static func save(path_name: String = "") -> void:
 	
 	_processing_owner = null
 	
-	file.save(file_path, OS.is_debug_build())
-	
-	_processing_cfg = null
+	_current_saver = EternalFileSaver.new(file)
+	_current_saver.save(file_path, OS.is_debug_build())
+	_current_saver = null
 	
 	#for named_path in named_cfgs:
 		#var cfg: EternalFile = named_cfgs[named_path]
@@ -99,13 +98,19 @@ static func save(path_name: String = "") -> void:
 
 
 static func get_processing_owner() -> Object:
-	if _processing_cfg and not _processing_cfg.processing_owner_stack.is_empty():
-		return _processing_cfg.processing_owner_stack[-1]
+	if _current_loader:
+		return _current_loader.get_processing_owner()
+	if _current_saver:
+		return _current_saver.get_processing_owner()
 	return _processing_owner
 
 
-static func get_processing_file() -> EternalFile:
-	return _processing_cfg
+static func get_current_loader() -> EternalFileLoader:
+	return _current_loader
+
+
+static func get_current_saver() -> EternalFileSaver:
+	return _current_saver
 
 
 static func get_save_name(path_name: String = "") -> String:
@@ -132,9 +137,8 @@ static func _reload_file(path_name: String = "") -> void:
 	if file_path.is_empty():
 		return
 	
-	var cfg := EternalFile.new()
-	_processing_cfg = cfg
-	cfg.load(file_path)
+	_current_loader = EternalFileLoader.new()
+	var cfg := _current_loader.load(file_path)
 	
 	for script_class in get_defaults_cfg().get_scripts():
 		var script := UserClassDB.class_get_script(script_class)
@@ -166,7 +170,8 @@ static func _reload_file(path_name: String = "") -> void:
 	_processing_owner = null
 	
 	loaded.emit(file_path)
-	_processing_cfg = null
+	
+	_current_loader = null
 
 
 static func _queue_named_path_load(path_name: String) -> void:
@@ -211,7 +216,7 @@ class _Instance:
 
 
 class Initializer:
-	var defaults_cfg := EternalFile.new()
+	var defaults_cfg: EternalFile
 	var named_paths: Dictionary[String, String] = {}
 	var named_path_load_queue := PackedStringArray()
 	
@@ -221,7 +226,7 @@ class Initializer:
 		named_paths.assign(ProjectSettings.get_setting("eternity/named_paths/defaults"))
 		
 		if OS.has_feature("editor"):
-			defaults_cfg.load_existing_resources.call_deferred(DEFAULTS_FILE_PATH)
+			defaults_cfg = EternalFile.new()
 			
 			defaults_cfg.value_changed.connect(func(..._args: Array) -> void:
 				if defaults_cfg_save_queued:
@@ -230,7 +235,10 @@ class Initializer:
 				
 				await Promise.defer()
 				
-				defaults_cfg.save(DEFAULTS_FILE_PATH, true)
+				var saver := EternalFileSaver.new(defaults_cfg)
+				saver.save(DEFAULTS_FILE_PATH, true)
 			)
 		else:
-			defaults_cfg.load.call_deferred(DEFAULTS_FILE_PATH)
+			await Promise.defer()
+			var loader := EternalFileLoader.new()
+			defaults_cfg = loader.load(DEFAULTS_FILE_PATH)

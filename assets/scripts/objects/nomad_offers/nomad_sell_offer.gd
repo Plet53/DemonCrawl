@@ -19,10 +19,10 @@ func _perform() -> void:
 
 
 func _get_fail_message() -> String:
-	return tr("stranger.nomad.sell.fail")
+	return tr("object.nomad.sell.fail")
 
 
 func get_description() -> String:
-	return "\"" + _get_description() + "\"\n" + tr("stranger.nomad.price").format({
+	return "\"" + _get_description() + "\"\n" + tr("object.nomad.price").format({
 		"cost": cost
 	})

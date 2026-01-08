@@ -257,6 +257,8 @@ func _on_stage_finished(stage_instance: StageInstanceBase) -> void:
 			if Quest.get_current() == self:
 				Quest.clear_current()
 			
+			Eternity.save()
+			
 			# TODO: send player to "quest finished" scene
 			get_tree().change_scene_to_file("res://engine/scenes/main_menu/main_menu.tscn")
 			
@@ -265,7 +267,10 @@ func _on_stage_finished(stage_instance: StageInstanceBase) -> void:
 	if stage_instance == get_current_stage_base():
 		_current_stage = null
 	
+	stage_instance.get_parent().remove_child(stage_instance)
 	stage_instance.queue_free()
+	
+	Eternity.save()
 	
 	get_tree().change_scene_to_file("res://engine/scenes/stage_select/stage_select.tscn")
 

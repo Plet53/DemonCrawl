@@ -23,7 +23,7 @@ func _spawn() -> void:
 	add_child(item)
 	
 	item.cleared.connect(func() -> void:
-		Toasts.add_toast(tr("stranger.mage.lost-item").format({
+		Toasts.add_toast(tr("object.mage.lost-item").format({
 			"item": tr(item.get_item_name())
 		}), get_source())
 		item.set_mana(-1)
@@ -36,7 +36,7 @@ func _interact() -> void:
 	if Quest.get_current().get_stats().coins < cost:
 		var handled := handle_fail()
 		if not handled:
-			Toasts.add_toast(tr("stranger.mage.fail"), get_source())
+			Toasts.add_toast(tr("object.mage.fail"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)
@@ -60,22 +60,22 @@ func get_item() -> Item:
 
 
 func _get_annotation_title() -> String:
-	return tr("stranger.mage").to_upper()
+	return tr("object.mage").to_upper()
 
 
 func _get_annotation_subtext() -> String:
 	if get_item().get_mana() < 0:
-		return "\"" + tr("stranger.mage.description.no-item").format({
+		return "\"" + tr("object.mage.description.no-item").format({
 			"item": tr(get_item().get_item_name())
 		}) + "\""
 	
 	if get_item().is_charged():
-		return "\"" + tr("stranger.mage.description").format({
+		return "\"" + tr("object.mage.description").format({
 			"item": tr(get_item().get_item_name()),
 			"cost": cost
 		}) + "\""
 	
-	return "\"" + tr("stranger.mage.description.charging").format({
+	return "\"" + tr("object.mage.description.charging").format({
 		"item": tr(get_item().get_item_name()),
 		"mana": get_item().get_max_mana() - get_item().get_mana()
 	}) + "\""

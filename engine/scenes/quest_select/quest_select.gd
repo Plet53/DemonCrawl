@@ -40,9 +40,9 @@ func _on_begin_button_pressed() -> void:
 	
 	quest.start()
 	
-	get_tree().change_scene_to_file("res://engine/scenes/stage_select/stage_select.tscn")
-	
 	Eternity.save()
+	
+	get_tree().change_scene_to_file("res://engine/scenes/stage_select/stage_select.tscn")
 	
 	#Effects.quest_start(quest)
 	
