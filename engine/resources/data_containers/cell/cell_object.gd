@@ -6,8 +6,8 @@ class_name CellObject
 ## A [Cell]'s object.
 
 # ==============================================================================
-@export var _origin_stage: StageBase = null : set = _set_origin_stage, get = get_origin_stage
-# ==============================================================================
+var _origin_stage: StageBase = null : set = _set_origin_stage, get = get_origin_stage
+
 var _theme: Theme = null :
 	get:
 		if _theme == null and _origin_stage != null:
@@ -25,6 +25,9 @@ func _init(stage: Stage = null) -> void:
 
 
 func _ready() -> void:
+	if get_origin_stage() == null and get_stage() != null:
+		_set_origin_stage(get_stage())
+	
 	if not get_cell():
 		return
 	
@@ -49,8 +52,7 @@ func _export_packed_enabled() -> bool:
 func _export_packed() -> Array:
 	var args := []
 	
-	var processing_owner := Eternity.get_processing_owner()
-	if not processing_owner.has_method("get_stage") or processing_owner.get_stage() != self.get_origin_stage():
+	if get_origin_stage() != get_stage():
 		args.append(get_origin_stage())
 	
 	#if not initialized:
@@ -70,16 +72,8 @@ static func _import_packed_static(script: String, ...args: Array) -> CellObject:
 	
 	var i := 0
 	if not args.is_empty() and args[0] is Stage:
-		object._origin_stage = args[0]
+		object._set_origin_stage(args[0])
 		i = 1
-	else:
-		var processing_owner := Eternity.get_processing_owner()
-		if processing_owner.has_method("get_stage"):
-			Eternity.get_current_loader().loaded.connect(func(_path: String) -> void:
-				object._origin_stage = processing_owner.get_stage()
-			, CONNECT_ONE_SHOT)
-		else:
-			Debug.log_error("Could not obtain the stage for object '%s'." % object)
 	
 	if i >= args.size():
 		return object
@@ -129,17 +123,17 @@ func get_cell() -> CellData:
 
 
 func _set_origin_stage(value: Stage) -> void:
-	if _origin_stage and _origin_stage.changed.is_connected(_on_stage_changed):
-		_origin_stage.changed.disconnect(_on_stage_changed)
+	if _origin_stage and _origin_stage.changed.is_connected(_on_origin_stage_changed):
+		_origin_stage.changed.disconnect(_on_origin_stage_changed)
 	
 	_origin_stage = value
 	
-	_on_stage_changed()
+	_on_origin_stage_changed()
 	if value:
-		value.changed.connect(_on_stage_changed)
+		value.changed.connect(_on_origin_stage_changed)
 
 
-func _on_stage_changed() -> void:
+func _on_origin_stage_changed() -> void:
 	_theme = null
 	_texture = null
 	_material = null
