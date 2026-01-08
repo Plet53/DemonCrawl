@@ -148,6 +148,9 @@ func _prepare_object(object: Object, resources: Array[Object], allow_packing: bo
 		return
 	
 	if object is Node and object.has_method("_export_children"):
+		if object not in resources:
+			resources.append(object)
+		
 		_processing_owner_stack.append(object)
 		_prepare_variant(object._export_children(), resources)
 		_processing_owner_stack.pop_back()
