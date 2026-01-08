@@ -28,8 +28,8 @@ func _ready() -> void:
 	if not get_cell():
 		return
 	
-	if Eternity.get_processing_file() != null:
-		await Eternity.get_processing_file().loaded
+	if Eternity.get_current_loader() != null:
+		await Eternity.get_current_loader().loaded
 		_cell_enter()
 		return
 	
@@ -75,7 +75,7 @@ static func _import_packed_static(script: String, ...args: Array) -> CellObject:
 	else:
 		var processing_owner := Eternity.get_processing_owner()
 		if processing_owner.has_method("get_stage"):
-			Eternity.get_processing_file().loaded.connect(func(_path: String) -> void:
+			Eternity.get_current_loader().loaded.connect(func(_path: String) -> void:
 				object._origin_stage = processing_owner.get_stage()
 			, CONNECT_ONE_SHOT)
 		else:

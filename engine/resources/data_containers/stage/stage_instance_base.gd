@@ -12,7 +12,7 @@ signal finished()
 # ==============================================================================
 
 func _init() -> void:
-	_reloaded = Eternity.get_processing_file() != null
+	_reloaded = Eternity.get_current_loader() != null
 	
 	tree_exited.connect(Eternity.save, CONNECT_DEFERRED)
 
