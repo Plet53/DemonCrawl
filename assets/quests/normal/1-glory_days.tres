@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="QuestFile" load_steps=27 format=3 uid="uid://7rcj8aaeg57t"]
 
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_85xo3"]
-[ext_resource type="Resource" uid="uid://cmgsgbfsp2eq7" path="res://assets/quests/default_generation_sequence.tres" id="1_hq225"]
+[ext_resource type="Resource" uid="uid://c5ovbpehuvyni" path="res://assets/quests/default_generation_sequence.tres" id="1_hq225"]
 [ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template_base.gd" id="4_hq225"]
 [ext_resource type="Resource" uid="uid://br8geq04g5gr1" path="res://assets/skins/forest/forest.tres" id="5_05hb6"]
 [ext_resource type="Resource" uid="uid://2pddyb3wf24c" path="res://assets/skins/cavern/cavern.tres" id="7_afrda"]
