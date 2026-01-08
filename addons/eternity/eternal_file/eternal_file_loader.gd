@@ -22,6 +22,8 @@ class_name EternalFileLoader
 ## and can easily be misused otherwise.
 
 # ==============================================================================
+static var TYPE_NAME_LIST := range(TYPE_MAX).map(func(t: Variant.Type) -> String: return type_string(t))
+# ==============================================================================
 var _processing_owner_stack: Array[Object] = []
 
 var _file: EternalFile
@@ -332,25 +334,10 @@ func _parse_value(value: String) -> Variant:
 		return _parse_constructor(value)
 	
 	if value.match("{*}"):
-		var dict := {}
-		var pairs := Stringifier.split_ignoring_nested(value.trim_prefix("{").trim_suffix("}"), ",")
-		var is_pending := false
-		for pair in pairs:
-			pair = pair.strip_edges()
-			if pair.is_empty():
-				continue
-			
-			var key_value := Stringifier.split_ignoring_nested(pair, ":")
-			var key = _parse_value(key_value[0])
-			var parsed_value = _parse_value(key_value[1])
-			if key is PendingResourceBase or parsed_value is PendingResourceBase:
-				is_pending = true
-			elif key is MissingExtResource or parsed_value is MissingExtResource:
-				continue
-			dict[key] = parsed_value
-		if is_pending:
-			return UntypedPendingResourceDictionary.new(dict)
-		return dict
+		return _parse_dict(value)
+	
+	if value.match("Dictionary[*,*]({*})"):
+		return _parse_typed_dict(value)
 	
 	if UserClassDB.class_exists(value):
 		return UserClassDB.class_get_script(value)
@@ -379,8 +366,13 @@ func _parse_array(value: String) -> Variant:
 
 func _parse_typed_array(value: String) -> Variant:
 	var type_name := value.trim_prefix("Array[").get_slice("]", 0)
+	
 	if ClassDB.class_exists(type_name):
-		return Array(value.split(","), TYPE_OBJECT, type_name, null).map(_parse_value)
+		var values := Array(value.split(",")).map(_parse_value)
+		if values.any(func(a: Variant) -> bool: return a is PendingResourceBase):
+			return TypedPendingResourceArray.new(values, Array([], TYPE_OBJECT, type_name, null))
+		return Array(values, TYPE_OBJECT, type_name, null)
+	
 	if UserClassDB.class_exists(type_name):
 		var script := UserClassDB.class_get_script(type_name)
 		var values_string := value.substr(9 + type_name.length()).trim_suffix("])")
@@ -390,16 +382,21 @@ func _parse_typed_array(value: String) -> Variant:
 			s = s.strip_edges()
 			if s.is_empty():
 				continue
+			
 			var v = _parse_value(s)
 			if v is PendingResourceBase:
 				is_pending = true
 			elif v is MissingExtResource:
 				continue
+			
 			values.append(v)
+		
 		if is_pending:
 			return TypedPendingResourceArray.new(values, Array([], TYPE_OBJECT, script.get_instance_base_type(), script))
+		
 		return Array(values, TYPE_OBJECT, script.get_instance_base_type(), script)
-	var type := range(TYPE_MAX).map(func(t: int) -> String: return type_string(t)).find(type_name)
+	
+	var type := _get_type_int(type_name)
 	assert(type != -1, "Invalid class name in value '%s'." % value)
 	return Array(Array(value.substr(9 + type_name.length()).trim_suffix("])").split(",")).map(_parse_value), type, "", null)
 
@@ -448,6 +445,92 @@ func _parse_constructor(value: String) -> Object:
 	var args := _parse_value_list(value.trim_prefix(script_name + "(").trim_suffix(")"))
 	
 	return Constructor.new(script_name).construct(args)
+
+
+func _parse_dict(value: String) -> Variant:
+	var dict := {}
+	var pairs := Stringifier.split_ignoring_nested(value.trim_prefix("{").trim_suffix("}"), ",")
+	var is_pending := false
+	for pair in pairs:
+		pair = pair.strip_edges()
+		if pair.is_empty():
+			continue
+		
+		var key_value := Stringifier.split_ignoring_nested(pair, ":")
+		var key = _parse_value(key_value[0])
+		var parsed_value = _parse_value(key_value[1])
+		
+		if key is PendingResourceBase or parsed_value is PendingResourceBase:
+			is_pending = true
+		elif key is MissingExtResource or parsed_value is MissingExtResource:
+			continue
+		
+		dict[key] = parsed_value
+	
+	if is_pending:
+		return UntypedPendingResourceDictionary.new(dict)
+	return dict
+
+
+func _parse_typed_dict(value: String) -> Variant:
+	var type_name_pair := value.trim_prefix("Dictionary[").get_slice("]", 0)
+	var key_type_name := type_name_pair.get_slice(",", 0).strip_edges()
+	var value_type_name := type_name_pair.get_slice(",", 1).strip_edges()
+	
+	var content_string := value.substr(value.find("]") + 1).trim_prefix("(").trim_suffix(")")
+	var content = _parse_dict(content_string)
+	
+	var dict: Dictionary
+	var is_pending: bool
+	if content is UntypedPendingResourceDictionary:
+		dict = content.dict
+		is_pending = true
+	else:
+		dict = content
+		is_pending = false
+	
+	if is_pending:
+		return TypedPendingResourceDictionary.new(dict, Dictionary({},
+			_get_type_int(key_type_name),
+			_get_type_class_name(key_type_name),
+			_get_type_script(key_type_name),
+			_get_type_int(value_type_name),
+			_get_type_class_name(value_type_name),
+			_get_type_script(value_type_name)
+		))
+	
+	return Dictionary(dict,
+		_get_type_int(key_type_name),
+		_get_type_class_name(key_type_name),
+		_get_type_script(key_type_name),
+		_get_type_int(value_type_name),
+		_get_type_class_name(value_type_name),
+		_get_type_script(value_type_name)
+	)
+
+
+func _get_type_int(type_name: String) -> Variant.Type:
+	if type_name in TYPE_NAME_LIST:
+		return TYPE_NAME_LIST.find(type_name) as Variant.Type
+	
+	if ClassDB.class_exists(type_name) or UserClassDB.class_exists(type_name):
+		return TYPE_OBJECT
+	
+	return TYPE_NIL
+
+
+func _get_type_class_name(type_name: String) -> StringName:
+	if ClassDB.class_exists(type_name):
+		return type_name
+	
+	if UserClassDB.class_exists(type_name):
+		return UserClassDB.class_get_script(type_name).get_instance_base_type()
+	
+	return &""
+
+
+func _get_type_script(type_name: String) -> Script:
+	return UserClassDB.class_get_script(type_name) # returns null if it doesn't exist
 
 
 func _parse_value_list(value_list: String) -> Array:
@@ -559,6 +642,20 @@ class UntypedPendingResourceDictionary extends PendingResourceBase:
 				dict[key.create(resources)] = dict[key]
 				dict.erase(key)
 		return dict
+
+
+## A typed [Dictionary] of potentially unavailable [Resource]s.
+class TypedPendingResourceDictionary extends UntypedPendingResourceDictionary:
+	var dict_base: Dictionary ## The base of the [Dictionary]. It should be typed, and this same [Dictionary] will be returned in [method create].
+	
+	@warning_ignore("shadowed_variable_base_class", "shadowed_variable")
+	func _init(dict: Dictionary, dict_base: Dictionary) -> void:
+		super(dict)
+		self.dict_base = dict_base
+	
+	func _create(resources: Dictionary[int, Object]) -> Dictionary:
+		dict_base.assign(super(resources))
+		return dict_base
 
 
 class PendingResourceInstantiator extends PendingResourceBase:

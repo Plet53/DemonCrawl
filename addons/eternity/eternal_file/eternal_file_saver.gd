@@ -387,49 +387,73 @@ func _serialize_value(value: Variant, allow_packing: bool = true) -> String:
 			return "[" + ", ".join(value.map(_serialize_value.bind(allow_packing))) + "]"
 		
 		var type := value.get_typed_builtin() as Variant.Type
-		if type == TYPE_OBJECT:
-			var script := value.get_typed_script() as Script
-			if not script:
-				return "Array[%s]([%s])" % [
-					value.get_typed_class_name(),
-					", ".join(value.map(_serialize_value.bind(allow_packing)))
-				]
-			else:
-				var script_id := UserClassDB.script_get_identifier(script)
-				
-				for method in UserClassDB.class_get_method_list(script_id):
-					if method.flags & METHOD_FLAG_STATIC:
-						continue
-					if method.name == "_export_packed":
-						return "PackedArray[%s](%s)" % [
-							script_id,
-							", ".join(value.map(func(v: Object) -> String:
-								var pack := _pack(v)
-								if v.get_script() != script:
-									if pack.match("(*)"):
-										pack = UserClassDB.script_get_identifier(v.get_script()) + pack
-									else:
-										pack = "%s(%s)" % [UserClassDB.script_get_identifier(v.get_script()), pack]
-								return pack\
-							))
-						]
-				
-				return "Array[%s]([%s])" % [
-					UserClassDB.script_get_identifier(script),
-					", ".join(value.map(_serialize_value.bind(allow_packing)))
-				]
-		else:
+		if type != TYPE_OBJECT:
 			return "Array[%s]([%s])" % [
 				type_string(type),
 				", ".join(value.map(_serialize_value.bind(allow_packing)))
 			]
+		
+		var script := value.get_typed_script() as Script
+		if not script:
+			return "Array[%s]([%s])" % [
+				value.get_typed_class_name(),
+				", ".join(value.map(_serialize_value.bind(allow_packing)))
+			]
+		
+		var script_id := UserClassDB.script_get_identifier(script)
+		
+		for method in UserClassDB.class_get_method_list(script_id):
+			if method.flags & METHOD_FLAG_STATIC:
+				continue
+			if method.name == "_export_packed":
+				return "PackedArray[%s](%s)" % [
+					script_id,
+					", ".join(value.map(func(v: Object) -> String:
+						var pack := _pack(v)
+						if v.get_script() != script:
+							if pack.match("(*)"):
+								pack = UserClassDB.script_get_identifier(v.get_script()) + pack
+							else:
+								pack = "%s(%s)" % [UserClassDB.script_get_identifier(v.get_script()), pack]
+						return pack\
+					))
+				]
+		
+		return "Array[%s]([%s])" % [
+			script_id,
+			", ".join(value.map(_serialize_value.bind(allow_packing)))
+		]
 	if value is Dictionary:
+		if not value.is_typed():
+			if value.is_empty():
+				return "{}"
+			
+			return "{\n\t" + ",\n\t".join(value.keys().map(func(key: Variant) -> String:
+				return _serialize_value(key, allow_packing) + ": " + _serialize_value(value[key], allow_packing)
+			)) + "\n}"
+		
+		var key_type_name := _get_type_name(value.get_typed_key_builtin(), value.get_typed_key_class_name(), value.get_typed_key_script())
+		var value_type_name := _get_type_name(value.get_typed_value_builtin(), value.get_typed_value_class_name(), value.get_typed_value_script())
+		
 		if value.is_empty():
-			return "{}"
-		return "{\n" + ",\n".join(value.keys().map(func(key: Variant) -> String:
+			return "Dictionary[%s, %s]({})" % [key_type_name, value_type_name]
+		
+		return "Dictionary[%s, %s]({\n\t" % [key_type_name, value_type_name] + ",\n\t".join(value.keys().map(func(key: Variant) -> String:
 			return _serialize_value(key, allow_packing) + ": " + _serialize_value(value[key], allow_packing)
-		)) + "\n}"
+		)) + "\n})"
+	
 	return Stringifier.stringify(value)
+
+
+func _get_type_name(type: Variant.Type, type_class_name: StringName, type_script: Script) -> String:
+	if type != TYPE_OBJECT:
+		return type_string(type)
+	
+	if type_script == null:
+		assert(ClassDB.class_exists(type_class_name), "Unknown type name '%s' or invalid script." % type_class_name)
+		return type_class_name
+	
+	return UserClassDB.script_get_identifier(type_script)
 
 
 func _pack(value: Object) -> String:

@@ -27,12 +27,13 @@ func get_next() -> String:
 			return current_line
 		
 		var value := current_line.trim_prefix(current_line.get_slice("=", 0)).strip_edges().trim_prefix("=").strip_edges()
-		assert("=" in current_line, "Invalid line '%s' in file '%s'." % [current_line, _file.get_path()])
 		while not _validate_value_string(value):
 			var new_line := _file.get_line().strip_edges()
 			line_number += 1
 			current_line += "\n" + new_line
 			value += new_line
+		
+		assert("=" in current_line, "Invalid line '%s' in file '%s'." % [current_line, _file.get_path()])
 		
 		return current_line
 	
@@ -85,6 +86,6 @@ func _validate_value_string(value: String) -> bool:
 		return value[-1] == "}"
 	if value.begins_with("["):
 		return value[-1] == "]"
-	if value.begins_with("Array[") or value.begins_with("PackedArray["):
+	if value.begins_with("Array[") or value.begins_with("PackedArray[") or value.begins_with("Dictionary["):
 		return Stringifier.get_depth(value, "(", ")") == 0
 	return true
