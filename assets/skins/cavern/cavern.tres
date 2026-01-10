@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://2pddyb3wf24c"]
+[gd_resource type="Resource" script_class="StageFile" load_steps=17 format=3 uid="uid://2pddyb3wf24c"]
 
 [ext_resource type="AudioStream" uid="uid://b3oqa5eswgx17" path="res://assets/skins/cavern/ambience_a.ogg" id="1_rce27"]
-[ext_resource type="Script" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_xs4dc"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_xs4dc"]
 [ext_resource type="AudioStream" uid="uid://dhquerw4jjsvn" path="res://assets/skins/cavern/ambience_b.ogg" id="2_i8e2d"]
 [ext_resource type="Texture2D" uid="uid://bs2384xt181kb" path="res://assets/skins/cavern/bg.png" id="3_fyblv"]
+[ext_resource type="Texture2D" uid="uid://dt3beuqqwlw80" path="res://assets/skins/cavern/artifact.png" id="3_i8e2d"]
 [ext_resource type="Texture2D" uid="uid://b0ttivy3jb6ot" path="res://assets/skins/cavern/empty.png" id="4_uoifs"]
 [ext_resource type="Texture2D" uid="uid://cwd4c6cv2lxbf" path="res://assets/skins/cavern/checking.png" id="5_cde2p"]
 [ext_resource type="Texture2D" uid="uid://cq72jvnsydfg8" path="res://assets/skins/cavern/coin.png" id="6_fpudp"]
@@ -27,6 +28,8 @@ name = "stage.cavern"
 bg = ExtResource("3_fyblv")
 monster_texture = ExtResource("12_2boas")
 monster_name_pool = SubResource("Resource_oomwx")
+artifact_texture = ExtResource("3_i8e2d")
+artifact_name = "stage.cavern.artifact"
 music = ExtResource("13_liepk")
 ambience_a = ExtResource("1_rce27")
 ambience_b = ExtResource("2_i8e2d")

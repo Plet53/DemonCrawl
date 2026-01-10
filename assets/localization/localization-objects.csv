@@ -10,6 +10,8 @@ object.familiar.description;Moves in a random direction each turn, revealing cel
 object.familiar.strong.description;Moves in a random direction each turn, revealing cells and picking up loot for you. Avoids flagged cells.
 object.token;Token
 object.token.spawned;A token has spawned!
+object.artifact;Artifact
+object.artifact.description;{stage} artifact
 
 object.nomad;Nomad
 object.nomad.price;Price: {cost} coins

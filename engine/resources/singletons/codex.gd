@@ -37,6 +37,8 @@ static var selected_mastery_changed := Signal() :
 
 static var tokens: int = Eternal.create(0)
 
+static var artifacts: Dictionary[StageFile, int] = Eternal.create({} as Dictionary[StageFile, int])
+
 static var xp: int = Eternal.create(0) :
 	set(new_xp):
 		xp = new_xp

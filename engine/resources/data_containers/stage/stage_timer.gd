@@ -5,6 +5,13 @@ class_name StageTimer
 # ==============================================================================
 const _TIME_SECOND_FACTOR := 1e-6
 # ==============================================================================
+@warning_ignore("unused_private_class_variable")
+@export var _timef: float :
+	set(value):
+		_time_usec = roundi(1e6 * value)
+	get:
+		return get_timef()
+# ==============================================================================
 var _paused := false
 
 var _time_usec := 0 :

@@ -14,12 +14,23 @@ func get_annotation_text() -> String:
 	
 	var title := get_annotation_title()
 	var subtext := get_annotation_subtext()
-	if subtext.is_empty():
-		return title
-	if title.is_empty():
-		return "[color=gray]" + subtext + "[/color]"
 	
-	return title + "\n[color=gray]" + subtext + "[/color]"
+	match [title.is_empty(), subtext.is_empty()]:
+		[true, true]:
+			return ""
+		[false, true]:
+			return "[color=#%s]%s[/color]" % [get_annotation_title_color().to_html(), title]
+		[true, false]:
+			return "[color=#%s]%s[/color]" % [get_annotation_subtext_color().to_html(), subtext]
+		[false, false]:
+			return "[color=#%s]%s[/color]\n[color=#%s]%s[/color]" % [
+				get_annotation_title_color().to_html(),
+				title,
+				get_annotation_subtext_color().to_html(),
+				subtext
+			]
+	
+	return ""
 
 
 ## Virtual method to override the return value of [method get_annotation_text].
@@ -59,3 +70,23 @@ func has_annotation_text() -> bool:
 ## Virtual method to override the return value of [method has_annotation_text].
 func _has_annotation_text() -> bool:
 	return true
+
+
+## Returns the color of the title text.
+func get_annotation_title_color() -> Color:
+	return _get_annotation_title_color()
+
+
+## Virtual method to override the color of the title text.
+func _get_annotation_title_color() -> Color:
+	return Color.WHITE
+
+
+## Returns the color of the subtext.
+func get_annotation_subtext_color() -> Color:
+	return _get_annotation_subtext_color()
+
+
+## Virtual method to override the color of the subtext.
+func _get_annotation_subtext_color() -> Color:
+	return Color.GRAY

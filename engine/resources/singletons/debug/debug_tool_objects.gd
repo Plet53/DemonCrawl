@@ -24,7 +24,7 @@ func _get_items() -> Array[Control]:
 		display.display_as_child(object)
 		
 		var tooltip_grabber := TooltipGrabber.new()
-		tooltip_grabber.text = object.get_name_id()
+		tooltip_grabber.text = "[color=#%s]%s[/color]" % [object.get_annotation_title_color().to_html(), tr(object.get_name_id())]
 		display.add_child(tooltip_grabber)
 		
 		var frame := Frame.create(display)

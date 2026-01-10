@@ -8,6 +8,7 @@
 resource_name = "Wishpool"
 script = ExtResource("2_7g1q8")
 base_script = ExtResource("1_itfad")
+charges = null
 metadata/_custom_type_script = "uid://b2fl50hmn6rix"
 
 [resource]

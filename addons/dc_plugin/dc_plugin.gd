@@ -1,5 +1,6 @@
 @tool
 extends EditorPlugin
+class_name DCPlugin
 
 #region error supressor
 
@@ -99,10 +100,20 @@ const COMMAND_ADD_MASTERY_KEY := COMMANDS_GROUP_NAME + "/dc.add-mastery"
 const ADD_ITEM_SCENE := preload("res://addons/dc_plugin/add_item.tscn")
 const ADD_MASTERY_SCENE := preload("res://addons/dc_plugin/add_mastery_popup.tscn")
 
+static var data_win_extraction_location := ""
+
+const SETTINGS_FILE_PATH := "user://dev/settings.ini"
+
 
 func _enter_tree() -> void:
 	EditorInterface.get_command_palette().add_command(COMMAND_ADD_ITEM, COMMAND_ADD_ITEM_KEY, add_item)
 	EditorInterface.get_command_palette().add_command(COMMAND_ADD_MASTERY, COMMAND_ADD_MASTERY_KEY, add_mastery)
+	
+	if FileAccess.file_exists("user://dev/settings.ini"):
+		var cfg := ConfigFile.new()
+		cfg.load(SETTINGS_FILE_PATH)
+		if cfg.has_section_key("DataWin", "location"):
+			data_win_extraction_location = cfg.get_value("DataWin", "location")
 
 
 func _exit_tree() -> void:
@@ -122,3 +133,9 @@ func add_mastery() -> void:
 	EditorInterface.popup_dialog_centered(window, Vector2(512, 384))
 	
 	window.close_requested.connect(window.queue_free)
+
+
+static func get_data_win_image(image_name: String, frame_idx: int = 0) -> Image:
+	var dir := data_win_extraction_location.path_join("spr_" + image_name)
+	var path := dir.path_join("spr_" + image_name + "_" + str(frame_idx) + ".png")
+	return Image.load_from_file(path)
