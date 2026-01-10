@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=15 format=3 uid="uid://dwbj710kiptai"]
+[gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://dwbj710kiptai"]
 
-[ext_resource type="Script" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_5mqe4"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_5mqe4"]
 [ext_resource type="AudioStream" uid="uid://cf1aujek4cc5m" path="res://assets/skins/swamp/ambience_a.ogg" id="1_svcjl"]
 [ext_resource type="AudioStream" uid="uid://chi206cux0kg" path="res://assets/skins/swamp/ambience_b.ogg" id="2_c28g5"]
+[ext_resource type="Texture2D" uid="uid://cyb1qfva6wvsm" path="res://assets/skins/swamp/artifact.png" id="3_c28g5"]
 [ext_resource type="Texture2D" uid="uid://eh58t6b1nbi2" path="res://assets/skins/swamp/bg.png" id="3_s5g4m"]
 [ext_resource type="Texture2D" uid="uid://b323to0wibt7e" path="res://assets/skins/swamp/empty.png" id="4_xpwwt"]
 [ext_resource type="Texture2D" uid="uid://cpn1pfe5fn8t5" path="res://assets/skins/swamp/checking.png" id="5_k6q2o"]
@@ -25,6 +26,8 @@ script = ExtResource("1_5mqe4")
 name = "stage.swamp"
 bg = ExtResource("3_s5g4m")
 monster_name_pool = SubResource("Resource_q5uyb")
+artifact_texture = ExtResource("3_c28g5")
+artifact_name = "stage.swamp.artifact"
 music = ExtResource("12_jd3ak")
 ambience_a = ExtResource("1_svcjl")
 ambience_b = ExtResource("2_c28g5")

@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://bfl6u4kkf4vdk"]
+[gd_resource type="Resource" script_class="StageFile" load_steps=17 format=3 uid="uid://bfl6u4kkf4vdk"]
 
-[ext_resource type="Script" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_ds4xu"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_ds4xu"]
 [ext_resource type="AudioStream" uid="uid://bps32mbgl2r6j" path="res://assets/skins/machine/ambience_a.ogg" id="1_u33jv"]
 [ext_resource type="AudioStream" uid="uid://dhtkiualh033o" path="res://assets/skins/machine/ambience_b.ogg" id="2_4eoky"]
+[ext_resource type="Texture2D" uid="uid://bfqi38i1cc8xh" path="res://assets/skins/machine/artifact.png" id="3_4eoky"]
 [ext_resource type="Texture2D" uid="uid://b5w0qp31qpeh7" path="res://assets/skins/machine/bg.png" id="3_smgct"]
 [ext_resource type="Texture2D" uid="uid://bdbk5lb8a2oor" path="res://assets/skins/machine/empty.png" id="4_r4on3"]
 [ext_resource type="Texture2D" uid="uid://sdqac0hut86f" path="res://assets/skins/machine/checking.png" id="5_3jv3n"]
@@ -27,6 +28,8 @@ name = "stage.machine"
 bg = ExtResource("3_smgct")
 monster_texture = ExtResource("12_uylhe")
 monster_name_pool = SubResource("Resource_bxcbp")
+artifact_texture = ExtResource("3_4eoky")
+artifact_name = "stage.machine.artifact"
 music = ExtResource("13_pesf3")
 ambience_a = ExtResource("1_u33jv")
 ambience_b = ExtResource("2_4eoky")

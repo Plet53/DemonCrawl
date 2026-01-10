@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://debpb0h467n2i"]
+[gd_resource type="Resource" script_class="StageFile" load_steps=14 format=3 uid="uid://debpb0h467n2i"]
 
-[ext_resource type="Script" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_hm3ds"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_hm3ds"]
 [ext_resource type="Texture2D" uid="uid://cv81dpt1dirtj" path="res://assets/skins/wester/bg.png" id="1_lygkb"]
+[ext_resource type="Texture2D" uid="uid://berk0c1dk7qr8" path="res://assets/skins/wester/artifact.png" id="1_xrbxf"]
 [ext_resource type="Texture2D" uid="uid://13fvhevvuc3i" path="res://assets/skins/wester/empty.png" id="2_xrbxf"]
 [ext_resource type="Texture2D" uid="uid://ggv2dsg1vuw7" path="res://assets/skins/wester/checking.png" id="3_rlpag"]
 [ext_resource type="Texture2D" uid="uid://eyj4n33l6ppd" path="res://assets/skins/wester/coin.png" id="4_qyke0"]
@@ -23,6 +24,8 @@ script = ExtResource("1_hm3ds")
 name = "stage.wester"
 bg = ExtResource("1_lygkb")
 monster_name_pool = SubResource("Resource_hn7kt")
+artifact_texture = ExtResource("1_xrbxf")
+artifact_name = "stage.wester.artifact"
 music = ExtResource("10_40pvs")
 cell_bg = ExtResource("2_xrbxf")
 cell_hidden = ExtResource("8_54s3c")

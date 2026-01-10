@@ -3,215 +3,280 @@ key;en
 stage.alcove;Alcove
 stage.alcove.description;A place from another time.
 stage.alcove.sign;EVEN MONSTERS NEED A QUIET SPOT
+stage.alcove.artifact;Dew
 stage.arctic;Arctic
 stage.arctic.description;Drift ever toward subzero.
 stage.arctic.sign;HELP! IT IS VERY COLD HERE!
+stage.arctic.artifact;Icicle
 stage.ash;Ash
 stage.ash.description;The meadow of departed souls.
 stage.ash.sign;WHERE ARE ALL THE FLOWERS?
+stage.ash.artifact;Soot
 stage.b;B
 stage.b.description;Zone data not found.
 stage.b.sign;N ISRO
+stage.b.artifact;Bluevein
 stage.birthday;Birthday
 stage.birthday.description;I hope you brought gifts.
 stage.birthday.sign;FOR HE'S A JOLLY GOOD DEMON
+stage.birthday.artifact;Cake
 stage.blight;Blight
 stage.blight.description;The black root of reality takes hold.
 stage.blight.sign;KEEP AWAY (I'M FULL OF TERMITES)
+stage.blight.artifact;Rot
 stage.bloodway;Bloodway
 stage.bloodway.description;Through the bloody river of time.
 stage.bloodway.sign;MILES TO GO.
+stage.bloodway.artifact;Ichor
 stage.blossom;Blossom
 stage.blossom.description;We exist outside of time.
 stage.blossom.sign;IT IS NOT SAFE HERE
+stage.blossom.artifact;Petal
 stage.brink;Brink
 stage.brink.description;In pursuit of the void.
 stage.brink.sign;THIS IS NOT THE END
+stage.brink.artifact;Corestone
 stage.cavern;Cavern
 stage.cavern.description;Power through the darkness.
 stage.cavern.sign;WATCH YOUR HEAD
+stage.cavern.artifact;Ore
 stage.chicken-coop;Chicken Coop
 stage.chicken-coop.sign;BE CAREFUL WHO YOU TRUST
 stage.christmas;Christmas
 stage.christmas.description;Santa's domain.
 stage.christmas.sign;SANTA'S WATCHING
+stage.christmas.artifact;Snowball
 stage.convoy;Convoy
 stage.convoy.description;Aboard the starship.
 stage.convoy.sign;WELCOME UNIT 7R-V39! WE HOPE YOU SLEPT SOUNDLY
+stage.convoy.artifact;Oil
 stage.crypt;Crypt
 stage.crypt.description;The source of the darkness...
 stage.crypt.sign;SECRET STAGE 02
+stage.crypt.artifact;Worm
 stage.default;Default
 stage.default.description;No nonsense.
 stage.default.sign;None
 stage.delta;Delta
 stage.delta.description;The truth that lies below.
 stage.delta.sign;COSTS ONE PENNY TO CROSS OVER. NO REFUNDS.
+stage.delta.artifact;Teardrop
 stage.desert;Desert
 stage.desert.description;Endure the blistering sun.
 stage.desert.sign;HAS ANYONE SEEN THE OASIS?
+stage.desert.artifact;Cactus
 stage.doom;Doom
 stage.doom.description;Forever... nothing.
 stage.doom.sign;SECRET STAGE 04
+stage.doom.artifact;Guts
 stage.dungeon;Dungeon
 stage.dungeon.description;The source of the darkness...
 stage.dungeon.sign;YOU WILL NOT MAKE IT OUT OF HERE ALIVE
+stage.dungeon.artifact;Cobweb
 stage.easter;Easter
 stage.easter.description;The land of egg and bunny.
 stage.easter.sign;TIP: RABBITS DON'T LAY EGGS
+stage.easter.artifact;Lily
 stage.elysium;Elysium
 stage.elysium.description;Gods, too, must fall.
 stage.elysium.sign;PROPERTY OF ZEUS. DO NOT TOUCH
+stage.elysium.artifact;Wing
 stage.entropy;Entropy
 stage.entropy.description;).noisulli na si raW
 stage.entropy.sign;WHERE AM I?
+stage.entropy.artifact;Antimatter
 stage.farm;Farm
 stage.farm.description;Evil is at your door.
 stage.farm.sign;BE CAREFUL WHO YOU TRUST
+stage.farm.artifact;Wheat
 stage.forest;Forest
 stage.forest.description;The journey begins here.
 stage.forest.sign;BEWARE: MONSTERS NEARBY
+stage.forest.artifact;Log
 stage.fungus;Fungus
 stage.fungus.description;A different kind of forest.
 stage.fungus.sign;DO NOT BREATHE IN THE SPORES!!
+stage.fungus.artifact;Spore
 stage.g;G
 stage.g.description;Zone data not found.
 stage.g.sign;OD
+stage.g.artifact;Greenvein
 stage.galaxy;Galaxy
 stage.galaxy.description;A different perspective.
 stage.galaxy.sign;IN SPACE NO ONE CAN HEAR YOU MISCLICK
+stage.galaxy.artifact;Star
 stage.garden;Garden
 stage.garden.description;A moment of peace.
 stage.garden.sign;HELP YOURSELF TO THE STRAWBERRIES
+stage.garden.artifact;Nectar
 stage.getaway;Getaway
 stage.getaway.sign;THE OLD WORLD ENDS HERE
 stage.glass;Glass
 stage.glass.description;Point of no return.
 stage.glass.sign;YOUR ENDURANCE IS ADMIRABLE
+stage.glass.artifact;Shard
 stage.graveyard;Graveyard
 stage.graveyard.description;Please do not disturb the dead.
 stage.graveyard.sign;HERE LIE YOUR REMAINS
+stage.graveyard.artifact;Tombstone
 stage.grotto;Grotto
 stage.grotto.description;Reality bends around the passage.
 stage.grotto.sign;THE HIEROGLYPHS WERE MEANT TO WARN US
+stage.grotto.artifact;Arrowhead
 stage.hallow;Hallow
 stage.hallow.description;Less green than you remember.
 stage.hallow.sign;BEWARE: MONSTERS NEARBY
+stage.hallow.artifact;Limpwort
 stage.halloween;Halloween
 stage.halloween.description;OooooOOooOOoo
 stage.halloween.sign;DON'T DEAD OPEN INSIDE
+stage.halloween.artifact;Pumpkin
 stage.hearth;Hearth
 stage.hearth.description;Make the season bright.
 stage.hearth.sign;YOU CAN'T RUN FROM SANTA
+stage.hearth.artifact;Mistletoe
 stage.hell;Hell
 stage.hell.description;Retreat ever further into the mind.
 stage.hell.sign;WOW, WHAT ARE THESE SIGNS MADE OF
+stage.hell.artifact;Brimstone
 stage.hinterland;Hinterland
 stage.hinterland.description;Beyond life and death.
 stage.hinterland.sign;IT IS NOT TOO LATE TO ABORT THIS QUEST
+stage.hinterland.artifact;Tusk
 stage.igloo;Igloo
 stage.igloo.sign;THE HIEROGLYPHS WERE MEANT TO WARN US
 stage.island;Island
 stage.island.description;So many colors!
 stage.island.sign;WELCOME TO PARADISE
+stage.island.artifact;Doubloon
 stage.lagoon;Lagoon
 stage.lagoon.description;Start again.
 stage.lagoon.sign;10,000 BC
+stage.lagoon.artifact;Kelp
 stage.machine;Machine
 stage.machine.description;You suffer for our amusement.
 stage.machine.sign;"congratulate_hero(you);delusion++;"
+stage.machine.artifact;Circuit
 stage.mainframe;Mainframe
 stage.mainframe.description;A peek behind the glass.
 stage.mainframe.sign;SECRET STAGE 05
+stage.mainframe.artifact;Wire
 stage.memory;Memory
 stage.memory.description;Come from dust.
 stage.memory.sign;NOTHING IS REAL
+stage.memory.artifact;Dream
 stage.metagate;Metagate
 stage.metagate.description;Leave this world behind.
 stage.metagate.sign;None
 stage.metropolis;Metropolis
 stage.metropolis.description;The world of tomorrow.
 stage.metropolis.sign;ALL CITIZENS ARE REQUIRED TO STAY WITHIN CITY LIMITS
+stage.metropolis.artifact;Steel
 stage.minefield;Minefield
 stage.minefield.description;The other side.
 stage.minefield.sign;TAKE COVER!
+stage.minefield.artifact;Shrapnel
 stage.mountain;Mountain
 stage.mountain.description;Ascend and discover.
 stage.mountain.sign;HUMANS NO WELCOME
+stage.mountain.artifact;Boulder
 stage.ocean;Ocean
 stage.ocean.description;Wade into the endless blue.
 stage.ocean.sign;TIP: SWIM
+stage.ocean.artifact;Pearl
 stage.october-8-th-1990;October 8th 1990
 stage.october-8-th-1990.description;It begins
 stage.october-8-th-1990.sign;...
 stage.prefecture;Prefecture
 stage.prefecture.description;Dare to look behind the curtain.
 stage.prefecture.sign;OBEY
+stage.prefecture.artifact;Umbra
 stage.quarry;Quarry
 stage.quarry.description;Beyond the place where whispers linger.
 stage.quarry.sign;BEWARE OF DOG
+stage.quarry.artifact;Mercury
 stage.r;R
 stage.r.description;Zone data not found.
 stage.r.sign;ILIAACTFI
+stage.r.artifact;Redvein
 stage.rapture;Rapture
 stage.rapture.description;Nothing lasts forever.
 stage.rapture.sign;THIS IS IT! END TIMES ARE HERE! PLEASE EVACUATE IN AN ORDERLY FASHION
+stage.rapture.artifact;Radium
 stage.reef;Reef
 stage.reef.description;What lies beneath the ocean?
 stage.reef.sign;SECRET STAGE 01
+stage.reef.artifact;Coral
 stage.ruins;Ruins
 stage.ruins.description;Centuries of history compressed into stone.
 stage.ruins.sign;BEWARE ...
+stage.ruins.artifact;Vestige
 stage.salem;Salem
 stage.salem.description;Who will burn at the stake?
 stage.salem.sign;Witch population: 0
+stage.salem.artifact;Hexmark
 stage.sewer;Sewer
 stage.sewer.description;What have you found?
 stage.sewer.sign;LEAVE THIS PLACE WHILE YOU STILL CAN
+stage.sewer.artifact;Waste
 stage.shrine;Shrine
 stage.shrine.description;Return to dust.
 stage.shrine.sign;AND NOW... WE BECOME ONE WITH GOD
+stage.shrine.artifact;Bead
 stage.skies;Skies
 stage.skies.description;Keep your head above the clouds.
 stage.skies.sign;WAKE UP
+stage.skies.artifact;Cloud
 stage.storm;Storm
 stage.storm.description;Over the thunder of denial.
 stage.storm.sign;LIGHTNING WAS HERE.
+stage.storm.artifact;Lightning
 stage.strand;Strand
 stage.strand.description;Stand at the edge of tomorrow.
 stage.strand.sign;THE OLD WORLD ENDS HERE
+stage.strand.artifact;Conch
 stage.summer;Summer
 stage.summer.description;Soak up some sun!
 stage.summer.sign;ENJOY YOUR STAY!
+stage.summer.artifact;Starfish
 stage.swamp;Swamp
 stage.swamp.description;The foyer of wickedness.
 stage.swamp.sign;DANGER: FROGS
+stage.swamp.artifact;Algae
 stage.the-basement;The Basement
 stage.the-basement.sign;YOU WILL NOT MAKE IT OUT OF HERE ALIVE
 stage.tower;Tower
 stage.tower.description;The answers within.
 stage.tower.sign;IT WILL BE OK
+stage.tower.artifact;Rope
 stage.tribe;Tribe
 stage.tribe.description;Council between life and death.
 stage.tribe.sign;THE ANCESTORS WELCOME YOU
+stage.tribe.artifact;Energy
 stage.tropics;Tropics
 stage.tropics.description;Arrive somewhere new.
 stage.tropics.sign;THIS SIGN IS WRITTEN IN ANOTHER LANGUAGE
+stage.tropics.artifact;Nut
 stage.vale;Vale
 stage.vale.description;Beyond a place of grassy knolls.
 stage.vale.sign;IT GETS DARKER.
+stage.vale.artifact;Bramble
 stage.volcano;Volcano
 stage.volcano.description;Surmount the molten core.
 stage.volcano.sign;THIS VOLCANO COULD ERUPT AT ANY MOMENT!
+stage.volcano.artifact;Lava
 stage.wester;Wester
 stage.wester.description;Dark side of the egg...
 stage.wester.sign;This part of town ain't safe for eggs
+stage.wester.artifact;Wilty
 stage.wilds;Wilds
 stage.wilds.description;March across dust and bones.
 stage.wilds.sign;<- VOLCANO THAT WAY
+stage.wilds.artifact;Tumbleweed
 stage.womb;Womb
 stage.womb.description;A light at the end of the tunnel.
 stage.womb.sign;DON'T ASK HOW I MANAGED TO GET THE SIGN IN HERE
+stage.womb.artifact;Flesh
 stage.wonder;Wonder
 stage.wonder.description;You little wonder, you...
 stage.wonder.sign;SECRET STAGE 03

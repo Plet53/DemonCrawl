@@ -2,9 +2,100 @@
 extends EditorScript
 class_name QuickRun
 
+const LOCALIZATION_STAGES_EN = preload("uid://cilbh6dvprp5")
 
 func _run() -> void:
-	create_stage_files()
+	load_artifacts_to_stage_files()
+
+
+static func load_artifacts_to_stage_files() -> void:
+	var client := await connect_to_host()
+	var html := await get_url_text(client, "/wiki/index.php/Artifacts")
+	FileAccess.open("user://temp.txt", FileAccess.WRITE).store_string(html)
+	
+	var i := html.find("id=\"Artifacts\"")
+	var artifacts: Dictionary[String, String] = {}
+	
+	while html.find("<li>", i) >= 0:
+		i = html.find("<li>", i)
+		i = html.find("</span>", i) + 8
+		var artifact := html.substr(i, html.find(" - ", i) - i)
+		i = html.find("</span>", i) + 8
+		var stage := html.substr(i, html.find("</i>", i) - i)
+		artifacts[stage] = artifact
+	
+	print(artifacts)
+	
+	for stage in DemonCrawl.get_full_registry().stages:
+		var stage_name := LOCALIZATION_STAGES_EN.get_message(stage.name)
+		if stage_name not in artifacts:
+			print("No artifact found for stage '%s'" % stage_name)
+			continue
+		
+		var artifact := artifacts[stage_name].to_snake_case()
+		var image := DCPlugin.get_data_win_image(artifact)
+		if not image:
+			print("No artifact found for stage '%s'" % stage_name)
+			continue
+		
+		image.save_png(stage.resource_path.get_base_dir().path_join("artifact.png"))
+		
+		print("Found an artifact for stage '%s'" % stage_name)
+	
+	var filesystem := EditorInterface.get_resource_filesystem()
+	
+	while filesystem.is_scanning():
+		await get_tree().process_frame
+	
+	filesystem.scan_sources()
+	
+	while filesystem.is_scanning():
+		await get_tree().process_frame
+	
+	for stage in DemonCrawl.get_full_registry().stages:
+		var stage_name := LOCALIZATION_STAGES_EN.get_message(stage.name)
+		if stage_name not in artifacts:
+			continue
+		
+		stage.artifact_name = stage.name + ".artifact"
+		
+		if not ResourceLoader.exists(stage.resource_path.get_base_dir().path_join("artifact.png")):
+			continue
+		
+		stage.artifact_texture = load(stage.resource_path.get_base_dir().path_join("artifact.png"))
+	
+	var file := FileAccess.open("res://assets/localization/localization-stages.csv", FileAccess.READ)
+	
+	var new_text := ""
+	var stage := ""
+	while not file.eof_reached():
+		var line := file.get_line()
+		
+		if not line.match("stage.%s.*;*" % stage) and line.match("stage.*;*"):
+			if not stage.is_empty() and stage.capitalize() in artifacts:
+				new_text += "stage.%s.artifact;%s\n" % [stage, artifacts[stage.capitalize()]]
+			stage = line.trim_prefix("stage.").get_slice(";", 0)
+		
+		new_text += line + "\n"
+	
+	file.close()
+	
+	FileAccess.open("res://assets/localization/localization-stages.csv", FileAccess.WRITE).store_string(new_text.strip_edges() + "\n")
+
+
+static func get_wiki_page_text(page: String) -> String:
+	var client := await connect_to_host()
+	
+	var json_text := await get_url_text(client, "/wiki/api.php?titles=%s&action=query&format=json&prop=revisions&rvprop=content&rvslots=main" % page)
+	if json_text.is_empty():
+		return ""
+	
+	var json = JSON.parse_string(json_text)
+	if json == null:
+		return ""
+	
+	var pages_dict: Dictionary = json.query.pages
+	return pages_dict[pages_dict.keys()[0]].revisions[0].slots.main["*"]
 
 
 static func create_stage_files() -> void:
