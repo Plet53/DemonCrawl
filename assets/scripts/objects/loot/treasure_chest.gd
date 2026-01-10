@@ -50,18 +50,18 @@ func _can_interact() -> bool:
 
 
 func get_coin_reward() -> int:
-	var reward: int = randi_range(6, 2 * Quest.get_current().get_selected_stage().max_power + 6)
-	return EffectManager.propagate_mutable((get_quest().get_event_bus(ChestEffects) as ChestEffects).get_coin_reward, 1, self, reward)
+	var reward: int = randi_range(6, 2 * get_stage().max_power + 6)
+	return EffectManager.propagate_mutable((get_stage_instance().get_event_bus(ChestEffects) as ChestEffects).get_coin_reward, 1, self, reward)
 
 
 func get_item_reward_amount() -> int:
-	return EffectManager.propagate_mutable((get_quest().get_event_bus(ChestEffects) as ChestEffects).get_item_reward_amount, 1, self, 1)
+	return EffectManager.propagate_mutable((get_stage_instance().get_event_bus(ChestEffects) as ChestEffects).get_item_reward_amount, 1, self, 1)
 
 
 func get_item_reward_max_cost() -> int:
-	return EffectManager.propagate_mutable((get_quest().get_event_bus(ChestEffects) as ChestEffects).get_item_reward_max_cost, 1, 
+	return EffectManager.propagate_mutable((get_stage_instance().get_event_bus(ChestEffects) as ChestEffects).get_item_reward_max_cost, 1, 
 		self,
-		4 * Quest.get_current().get_selected_stage().max_power + 3
+		4 * get_stage().max_power + 3
 	)
 
 
