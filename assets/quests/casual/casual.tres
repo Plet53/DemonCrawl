@@ -21,4 +21,5 @@ name = "difficulties/Casual"
 script = ExtResource("1_vkdlg")
 name = "difficulty.casual"
 icon = SubResource("Texture2D_fnfsu")
+color = Color(0.16862746, 0.9411765, 1, 1)
 quests = Array[ExtResource("3_p3sx6")]([ExtResource("2_75g8k"), ExtResource("3_bnqm1"), ExtResource("4_rq7lq"), ExtResource("5_lm3xo"), ExtResource("5_dfi1x"), ExtResource("7_whyy3")])

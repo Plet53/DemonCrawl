@@ -59,7 +59,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_vhutr")
 
-[node name="QuestComplete" type="Label" parent="."]
+[node name="Title" type="Label" parent="."]
 layout_mode = 0
 offset_left = 128.0
 offset_top = 200.0
@@ -78,7 +78,7 @@ offset_bottom = 312.25
 scale = Vector2(4, 4)
 theme = ExtResource("3_3i8v7")
 bbcode_enabled = true
-text = "\"RESPITE'S END\" on [color=#00ff00]NORMAL[/color]"
+text = "\"GLORY DAYS\" on [color=#0be084]NORMAL[/color]"
 fit_content = true
 
 [node name="ScoreLabel" type="Label" parent="."]
@@ -101,8 +101,17 @@ scale = Vector2(4, 4)
 theme = ExtResource("3_3i8v7")
 theme_override_constants/separation = 1
 
-[node name="MonsterSprite" type="TextureRect" parent="MonsterTaunt"]
+[node name="MonsterBox" type="Control" parent="MonsterTaunt"]
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
+
+[node name="MonsterSprite" type="TextureRect" parent="MonsterTaunt/MonsterBox"]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 17.0
+offset_bottom = 16.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = SubResource("Texture2D_0rn3y")
 
 [node name="MonsterText" type="Label" parent="MonsterTaunt"]
