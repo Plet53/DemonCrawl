@@ -110,6 +110,10 @@ quest.endless-multiverse.lore;Infinite variations. One destination. Delay the in
 quest.hero-trials;Hero Trials
 quest.hero-trials.lore;Put your mettle to the test with a new adventure every day! Can you survive these wartorn lands?
 
+quest-finished.title;Quest Complete!
+quest-finished.summary;"""{quest_name}"" on {difficulty_name}"
+quest-finised.score;YOUR FINAL SCORE IS: {score}
+
 stage.reward.victory;Victory
 stage.reward.victory.subtext;You beat the stage.
 stage.reward.flagless;Flagless

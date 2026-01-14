@@ -10,5 +10,6 @@ name = "item.suds"
 description = "item.suds.description"
 mana = 100
 cost = 22
+tags = Array[String](["_targeted"])
 icon = ExtResource("1_bl2a8")
 item_script = ExtResource("2_6bnhj")
