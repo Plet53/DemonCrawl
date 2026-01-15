@@ -63,11 +63,11 @@ texture = ExtResource("2_vhutr")
 layout_mode = 0
 offset_left = 128.0
 offset_top = 200.0
-offset_right = 287.0
+offset_right = 373.25
 offset_bottom = 221.0
 scale = Vector2(4, 4)
 theme = ExtResource("3_pcgx3")
-text = "Quest Complete!"
+text = "quest-finished.title"
 
 [node name="SummaryLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -78,7 +78,7 @@ offset_bottom = 312.25
 scale = Vector2(4, 4)
 theme = ExtResource("3_3i8v7")
 bbcode_enabled = true
-text = "\"GLORY DAYS\" on [color=#0be084]NORMAL[/color]"
+text = "quest-finished.summary"
 fit_content = true
 
 [node name="ScoreLabel" type="Label" parent="."]
@@ -89,7 +89,7 @@ offset_right = 235.0
 offset_bottom = 352.0
 scale = Vector2(4, 4)
 theme = ExtResource("3_3i8v7")
-text = "YOUR FINAL SCORE: 999999"
+text = "quest-finished.score"
 
 [node name="MonsterTaunt" type="HBoxContainer" parent="."]
 layout_mode = 0

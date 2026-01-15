@@ -13,6 +13,7 @@ menu.button.token-shop;TOKEN SHOP
 menu.button.codex;CODEX
 menu.button.quit;QUIT
 
+token-shop.label;Token Shop
 token-shop.title;SELECT A CATEGORY:
 token-shop.category.upgrades;Upgrades
 token-shop.category.upgrades.tokeneer;Tokeneer
@@ -112,7 +113,7 @@ quest.hero-trials.lore;Put your mettle to the test with a new adventure every da
 
 quest-finished.title;Quest Complete!
 quest-finished.summary;"""{quest_name}"" on [color=#{color}]{difficulty_name}[/color]"
-quest-finised.score;YOUR FINAL SCORE: {score}
+quest-finished.score;YOUR FINAL SCORE: {score}
 
 stage.reward.victory;Victory
 stage.reward.victory.subtext;You beat the stage.
