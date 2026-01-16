@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c2jmpjlrtuwcc"]
+[gd_scene load_steps=21 format=3 uid="uid://c2jmpjlrtuwcc"]
 
 [ext_resource type="Script" uid="uid://whrdbt0xwnet" path="res://engine/scenes/quest_complete/quest_complete.gd" id="1_rcn3b"]
 [ext_resource type="AudioStream" uid="uid://c23pal2bespi0" path="res://assets/music/quest_complete.ogg" id="2_5kbqk"]
@@ -34,6 +34,232 @@ font_color = Color(0.74509805, 0.74509805, 0.74509805, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_nwwge"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SummaryLabel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SummaryLabel:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ScoreLabel:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ScoreLabel:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MonsterTaunt/MonsterBox/MonsterSprite:scale:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MonsterTaunt/MonsterBox/MonsterSprite:scale:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DoneButton/TextureRect:position:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("DoneButton:position:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_loqg5"]
+resource_name = "quest_finished"
+length = 2.31
+step = 0.0166
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-508, 0, 0, 0.25, 0, 128, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SummaryLabel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(336, -0.25, 0, 0.25, 0, 304, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.6, 1.1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SummaryLabel:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.6, 1.1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ScoreLabel:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(376, -0.25, 0, 0.25, 0, 344, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(1.2166667, 1.7)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ScoreLabel:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(1.2166667, 1.7)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MonsterTaunt/MonsterBox/MonsterSprite:scale:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.04444444, 0, 1.5, -0.04444444, 0, 0.022222202, 0, 0.86705685, -0.022222202, 0, 0.016666692, 0, 1, -0.016666692, 0, 0, 0),
+"times": PackedFloat32Array(1.7333333, 1.8666667, 1.9333333, 1.9833333)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MonsterTaunt/MonsterBox/MonsterSprite:scale:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.04444444, 0, 1.5, -0.04444444, 0, 0.022222202, 0, 0.86705685, -0.022222202, 0, 0.016666692, 0, 1, -0.016666692, 0, 0, 0),
+"times": PackedFloat32Array(1.7333333, 1.8666667, 1.9333333, 1.9833333)
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.7166667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animate_monster_taunt"
+}]
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("DoneButton:position:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1248, -0.25, 0, 0.25, 0, 1012, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(1.7333333, 2.3)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("DoneButton/TextureRect:position:x")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(16, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(1.7333333, 2.3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nwwge"]
+_data = {
+&"RESET": SubResource("Animation_nwwge"),
+&"quest_finished": SubResource("Animation_loqg5")
+}
+
 [node name="QuestComplete" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -61,20 +287,19 @@ texture = ExtResource("2_vhutr")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
-offset_left = 128.0
 offset_top = 200.0
-offset_right = 373.25
+offset_right = 245.24982
 offset_bottom = 221.0
 scale = Vector2(4, 4)
 theme = ExtResource("3_pcgx3")
 text = "quest-finished.title"
 
 [node name="SummaryLabel" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 128.0
-offset_top = 304.0
 offset_right = 287.0
-offset_bottom = 312.25
+offset_bottom = 8.25
 scale = Vector2(4, 4)
 theme = ExtResource("3_3i8v7")
 bbcode_enabled = true
@@ -82,11 +307,11 @@ text = "quest-finished.summary"
 fit_content = true
 
 [node name="ScoreLabel" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 128.0
-offset_top = 344.0
 offset_right = 235.0
-offset_bottom = 352.0
+offset_bottom = 8.0
 scale = Vector2(4, 4)
 theme = ExtResource("3_3i8v7")
 text = "quest-finished.score"
@@ -101,15 +326,14 @@ scale = Vector2(4, 4)
 theme = ExtResource("3_3i8v7")
 theme_override_constants/separation = 1
 
-[node name="MonsterBox" type="Control" parent="MonsterTaunt"]
+[node name="MonsterBox" type="CenterContainer" parent="MonsterTaunt"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="MonsterSprite" type="TextureRect" parent="MonsterTaunt/MonsterBox"]
-layout_mode = 0
-offset_left = 1.0
-offset_right = 17.0
-offset_bottom = 16.0
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = SubResource("Texture2D_0rn3y")
@@ -127,9 +351,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -268.0
+offset_left = -1280.0
 offset_top = -92.0
-offset_right = -212.0
+offset_right = -1223.9999
 offset_bottom = -71.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -144,7 +368,7 @@ texture_repeat = 2
 material = SubResource("ShaderMaterial_pcgx3")
 layout_mode = 0
 offset_top = 2.0
-offset_right = 56.0
+offset_right = 56.00006
 offset_bottom = 19.0
 size_flags_vertical = 4
 texture = ExtResource("4_wnlgy")
@@ -215,3 +439,9 @@ layout_mode = 2
 text = "generic.level.abbr.1"
 label_settings = SubResource("LabelSettings_nwnoq")
 script = ExtResource("16_vgfa3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_nwwge")
+}

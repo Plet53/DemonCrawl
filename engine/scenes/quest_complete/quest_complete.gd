@@ -10,6 +10,7 @@ class_name QuestComplete
 @onready var score_label = $"ScoreLabel"
 @onready var monster_sprite = $"MonsterTaunt/MonsterBox/MonsterSprite"
 @onready var monster_taunt = $"MonsterTaunt/MonsterText"
+@onready var animation_player = %"AnimationPlayer"
 # ==============================================================================
 
 # Called when the node enters the scene tree for the first time.
@@ -32,30 +33,12 @@ func _ready() -> void:
 	var random_theme = random_base.get_instance().get_scene().get_theme()
 	monster_sprite.texture = random_theme.get_icon("monster", "Cell")
 	
-	# Anim Sequence:
-	var tween_animation = create_tween()
-	
-	# Quest Complete scrolls in from the left
-	var title_final_pos = title.position.x
-	title.position.x -= 300
-	tween_animation.tween_property(title, "position:x", title_final_pos, 1.0).set_ease(Tween.EASE_OUT)
-	
-	# Each Line of Summary Fades in and scrolls from just below
-	for label in [summary_label, score_label]:
-		var label_final_pos = label.position.y
-		label.position.y -= 64
-		label.modulate.a = 0
-		tween_animation.tween_property(label, "position:y", label_final_pos, 1.0)
-		tween_animation.parallel().tween_property(label, "modulate:a", 255, 1.0)
-	
-	# Monster Pops In, expanding to its full size elastically
-	var final_monster_scale = monster_sprite.scale
-	monster_sprite.scale = Vector2.ZERO
-	tween_animation.tween_property(monster_sprite, "scale", final_monster_scale, 1.0).set_trans(Tween.TRANS_ELASTIC)
-	# Monster's Taunt scrolls in 1 character per frame
-	tween_animation.parallel().tween_property(monster_taunt, "visible_characters", len(monster_taunt.text), len(monster_taunt.text) / 60.0)
+	animation_player.play(&"quest_finished")
 
 
+func animate_monster_taunt():
+	var tween_animation = monster_taunt.create_tween()
+	tween_animation.tween_property(monster_taunt, "visible_characters", len(monster_taunt.text), len(monster_taunt.text) / 60.0)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 	#pass
