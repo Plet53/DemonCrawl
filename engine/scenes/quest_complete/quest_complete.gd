@@ -3,18 +3,16 @@ extends Control
 class_name QuestComplete
 
 # ==============================================================================
-
+signal done
 # ==============================================================================
-@onready var title = $"Title"
 @onready var summary_label = $"SummaryLabel"
 @onready var score_label = $"ScoreLabel"
 @onready var monster_sprite = $"MonsterTaunt/MonsterBox/MonsterSprite"
 @onready var monster_taunt = $"MonsterTaunt/MonsterText"
-@onready var animation_player = %"AnimationPlayer"
+@onready var animation_player = $"AnimationPlayer"
 # ==============================================================================
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _enter_tree() -> void:
 	var quest := Quest.get_current()
 	var summary_values := {
 		"quest_name": quest.name,
@@ -39,8 +37,10 @@ func _ready() -> void:
 func animate_monster_taunt():
 	var tween_animation = monster_taunt.create_tween()
 	tween_animation.tween_property(monster_taunt, "visible_characters", len(monster_taunt.text), len(monster_taunt.text) / 60.0)
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-	#pass
+
+
+func _on_done_pressed():
+	done.emit()
+
 # High Score Popup
 # New Quest Popup

@@ -221,11 +221,20 @@ func finish() -> void:
 	data.completion_count += 1
 	if data.best_score < get_attributes().score:
 		data.best_score = get_attributes().score
+		# High Score Popup
 	data.save()
 	
 	while GuiLayer.get_mastery_achieved_popup().is_popup_visible():
 		await GuiLayer.get_mastery_achieved_popup().popup_hidden
 	
+	# Quest Unlock Popup
+	
+	if Quest.get_current() == self:
+		Quest.clear_current()
+	
+	Eternity.save()
+	
+	get_tree().change_scene_to_file("res://engine/scenes/main_menu/main_menu.tscn")
 	#notify_unloaded()
 
 
@@ -252,15 +261,8 @@ func _on_stage_finished(stage_instance: StageInstanceBase) -> void:
 			idx += 1
 		
 		if is_finished():
-			await finish()
-			
-			if Quest.get_current() == self:
-				Quest.clear_current()
-			
-			Eternity.save()
-			
-			# TODO: send player to "quest finished" scene
-			get_tree().change_scene_to_file("res://engine/scenes/main_menu/main_menu.tscn")
+			# send player to "quest finished" scene
+			get_tree().change_scene_to_file("res://engine/scenes/quest_complete/quest_complete.tscn")
 			
 			return
 	

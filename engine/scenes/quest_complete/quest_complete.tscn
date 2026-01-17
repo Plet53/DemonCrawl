@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c2jmpjlrtuwcc"]
+[gd_scene load_steps=22 format=3 uid="uid://c2jmpjlrtuwcc"]
 
 [ext_resource type="Script" uid="uid://whrdbt0xwnet" path="res://engine/scenes/quest_complete/quest_complete.gd" id="1_rcn3b"]
 [ext_resource type="AudioStream" uid="uid://c23pal2bespi0" path="res://assets/music/quest_complete.ogg" id="2_5kbqk"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://d16rb2jruql4e" path="res://engine/resources/utility_node/avatar.gd" id="11_epibk"]
 [ext_resource type="Script" uid="uid://bdhw3j6nfg2h1" path="res://engine/resources/utility_node/xp_bar.gd" id="14_upth8"]
 [ext_resource type="Script" uid="uid://cqt7ciq3ocqkl" path="res://engine/resources/utility_node/profile_name_label.gd" id="15_gq2by"]
+[ext_resource type="PackedScene" uid="uid://cyw23q7ecmq1i" path="res://engine/resources/singletons/gui_layer.tscn" id="15_nwwge"]
 [ext_resource type="Script" uid="uid://bs8ee2q1jttgb" path="res://engine/resources/utility_node/profile_level_label.gd" id="16_vgfa3"]
 
 [sub_resource type="Texture2D" id="Texture2D_0rn3y"]
@@ -288,7 +289,7 @@ texture = ExtResource("2_vhutr")
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
 offset_top = 200.0
-offset_right = 245.24982
+offset_right = 245.24973
 offset_bottom = 221.0
 scale = Vector2(4, 4)
 theme = ExtResource("3_pcgx3")
@@ -326,14 +327,20 @@ scale = Vector2(4, 4)
 theme = ExtResource("3_3i8v7")
 theme_override_constants/separation = 1
 
-[node name="MonsterBox" type="CenterContainer" parent="MonsterTaunt"]
+[node name="MonsterBox" type="Control" parent="MonsterTaunt"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="MonsterSprite" type="TextureRect" parent="MonsterTaunt/MonsterBox"]
-layout_mode = 2
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(8, 8)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = SubResource("Texture2D_0rn3y")
@@ -353,7 +360,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1280.0
 offset_top = -92.0
-offset_right = -1223.9999
+offset_right = -1224.0005
 offset_bottom = -71.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -368,7 +375,7 @@ texture_repeat = 2
 material = SubResource("ShaderMaterial_pcgx3")
 layout_mode = 0
 offset_top = 2.0
-offset_right = 56.00006
+offset_right = 56.0001
 offset_bottom = 19.0
 size_flags_vertical = 4
 texture = ExtResource("4_wnlgy")
@@ -441,7 +448,8 @@ label_settings = SubResource("LabelSettings_nwnoq")
 script = ExtResource("16_vgfa3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_nwwge")
 }
+
+[node name="GuiLayer" parent="." instance=ExtResource("15_nwwge")]
