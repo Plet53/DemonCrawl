@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://d16rb2jruql4e" path="res://engine/resources/utility_node/avatar.gd" id="11_epibk"]
 [ext_resource type="Script" uid="uid://bdhw3j6nfg2h1" path="res://engine/resources/utility_node/xp_bar.gd" id="14_upth8"]
 [ext_resource type="Script" uid="uid://cqt7ciq3ocqkl" path="res://engine/resources/utility_node/profile_name_label.gd" id="15_gq2by"]
-[ext_resource type="PackedScene" uid="uid://cyw23q7ecmq1i" path="res://engine/resources/singletons/gui_layer.tscn" id="15_nwwge"]
+[ext_resource type="Script" uid="uid://d1c6fxxsk1ugt" path="res://engine/resources/singletons/gui_enabler.gd" id="15_nwwge"]
 [ext_resource type="Script" uid="uid://bs8ee2q1jttgb" path="res://engine/resources/utility_node/profile_level_label.gd" id="16_vgfa3"]
 
 [sub_resource type="Texture2D" id="Texture2D_0rn3y"]
@@ -360,7 +360,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1280.0
 offset_top = -92.0
-offset_right = -1224.0005
+offset_right = -1224.0007
 offset_bottom = -71.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -390,7 +390,7 @@ size_flags_vertical = 4
 theme = ExtResource("3_pcgx3")
 text = "done!"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="ProfileContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.003125
@@ -404,17 +404,17 @@ grow_vertical = 0
 scale = Vector2(4, 4)
 theme_override_constants/separation = 0
 
-[node name="Avatar" type="TextureRect" parent="HBoxContainer"]
+[node name="Avatar" type="TextureRect" parent="ProfileContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("10_13ncb")
 script = ExtResource("11_epibk")
 
-[node name="Control" type="Control" parent="HBoxContainer"]
+[node name="Control" type="Control" parent="ProfileContainer"]
 custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 
-[node name="XPBar" type="ProgressBar" parent="HBoxContainer"]
+[node name="XPBar" type="ProgressBar" parent="ProfileContainer"]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_vertical = 4
@@ -423,25 +423,25 @@ fill_mode = 3
 show_percentage = false
 script = ExtResource("14_upth8")
 
-[node name="Control3" type="Control" parent="HBoxContainer"]
+[node name="Control3" type="Control" parent="ProfileContainer"]
 custom_minimum_size = Vector2(2, 0)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ProfileContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_bottom = -1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ProfileContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="ProfileNameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="ProfileNameLabel" type="Label" parent="ProfileContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "<profile-name>"
 script = ExtResource("15_gq2by")
 
-[node name="ProfileLevelLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="ProfileLevelLabel" type="Label" parent="ProfileContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "generic.level.abbr.1"
 label_settings = SubResource("LabelSettings_nwnoq")
@@ -452,4 +452,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_nwwge")
 }
 
-[node name="GuiLayer" parent="." instance=ExtResource("15_nwwge")]
+[node name="GuiEnabler" type="Node" parent="."]
+script = ExtResource("15_nwwge")
+_disabled = 7
+metadata/_custom_type_script = "uid://d1c6fxxsk1ugt"

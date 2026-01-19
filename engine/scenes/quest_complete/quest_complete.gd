@@ -3,8 +3,6 @@ extends Control
 class_name QuestComplete
 
 # ==============================================================================
-signal done
-# ==============================================================================
 @onready var summary_label = $"SummaryLabel"
 @onready var score_label = $"ScoreLabel"
 @onready var monster_sprite = $"MonsterTaunt/MonsterBox/MonsterSprite"
@@ -40,7 +38,7 @@ func animate_monster_taunt():
 
 
 func _on_done_pressed():
-	done.emit()
+	Quest.get_current().finish()
 
 # High Score Popup
 # New Quest Popup
