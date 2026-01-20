@@ -156,7 +156,8 @@ popup.highscore.text;YOU SET A NEW HIGH SCORE OF {score}
 popup.legendary.title;legendary unlocked!
 popup.legendary.text;You may now find this item in chests or shops:
 popup.new-quest.title;new quest discovered!
-popup.new-quest.text;{quest_name} is available for purchase from the Token Shop.
+popup.new-quest.unlocked;{quest_name} is now available to play.
+popup.new-quest.locked;{quest_name} is available for purchase from the Token Shop.
 
 stage.special.item-shop;Item Shop
 stage.special.item-shop.description;Spend coins to buy items. 

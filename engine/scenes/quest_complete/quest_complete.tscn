@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c2jmpjlrtuwcc"]
+[gd_scene load_steps=21 format=3 uid="uid://c2jmpjlrtuwcc"]
 
 [ext_resource type="Script" uid="uid://whrdbt0xwnet" path="res://engine/scenes/quest_complete/quest_complete.gd" id="1_rcn3b"]
 [ext_resource type="AudioStream" uid="uid://c23pal2bespi0" path="res://assets/music/quest_complete.ogg" id="2_5kbqk"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://d16rb2jruql4e" path="res://engine/resources/utility_node/avatar.gd" id="11_epibk"]
 [ext_resource type="Script" uid="uid://bdhw3j6nfg2h1" path="res://engine/resources/utility_node/xp_bar.gd" id="14_upth8"]
 [ext_resource type="Script" uid="uid://cqt7ciq3ocqkl" path="res://engine/resources/utility_node/profile_name_label.gd" id="15_gq2by"]
-[ext_resource type="Script" uid="uid://d1c6fxxsk1ugt" path="res://engine/resources/singletons/gui_enabler.gd" id="15_nwwge"]
 [ext_resource type="Script" uid="uid://bs8ee2q1jttgb" path="res://engine/resources/utility_node/profile_level_label.gd" id="16_vgfa3"]
 
 [sub_resource type="Texture2D" id="Texture2D_0rn3y"]
@@ -360,7 +359,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1280.0
 offset_top = -92.0
-offset_right = -1224.0007
+offset_right = -1224.0
 offset_bottom = -71.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -447,12 +446,9 @@ text = "generic.level.abbr.1"
 label_settings = SubResource("LabelSettings_nwnoq")
 script = ExtResource("16_vgfa3")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="QuestCompleteAP" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_nwwge")
 }
 
-[node name="GuiEnabler" type="Node" parent="."]
-script = ExtResource("15_nwwge")
-_disabled = 7
-metadata/_custom_type_script = "uid://d1c6fxxsk1ugt"
+[connection signal="pressed" from="DoneButton/Button" to="." method="_on_done_pressed"]

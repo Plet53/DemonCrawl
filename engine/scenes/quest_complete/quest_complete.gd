@@ -7,27 +7,31 @@ class_name QuestComplete
 @onready var score_label = $"ScoreLabel"
 @onready var monster_sprite = $"MonsterTaunt/MonsterBox/MonsterSprite"
 @onready var monster_taunt = $"MonsterTaunt/MonsterText"
-@onready var animation_player = $"AnimationPlayer"
+@onready var animation_player = $"QuestCompleteAP"
 # ==============================================================================
 
-func _enter_tree() -> void:
+func _ready() -> void:
 	var quest := Quest.get_current()
 	var summary_values := {
-		"quest_name": quest.name,
+		"quest_name": tr(quest.source_file.name).to_upper(),
 		"color": quest.source_difficulty.color.to_html(false),
-		"difficulty_name": quest.source_difficulty.name
+		"difficulty_name": tr(quest.source_difficulty.name).to_upper()
 	}
-	summary_label.text %= summary_values
-	score_label.text %= {"score": quest.get_attributes().score}
+	summary_label.text = tr("quest-finished.summary").format(summary_values)
+	score_label.text = tr("quest-finished.score").format({"score": quest.get_attributes().score})
 	
 	var stages: Array[StageBase] = quest.get_stages().filter(func (stage):
 		return not stage is SpecialStage
 	)
 	var random_base := stages[randi() % len(stages)]
+	var random_texture = random_base.file.monster_texture
+	var random_sprite = AnimatedTextureSequence.new()
+	random_sprite.atlas = random_texture
+	random_sprite.duration = 1.0
+	random_sprite.size = Vector2i.ONE * 16
 	monster_taunt.text = load("res://assets/string_tables/monster_taunts.tres").pick_random().format({"monster": random_base.generate_monster_name().to_upper()})
 	monster_taunt.visible_characters = 0
-	var random_theme = random_base.get_instance().get_scene().get_theme()
-	monster_sprite.texture = random_theme.get_icon("monster", "Cell")
+	monster_sprite.texture = random_sprite
 	
 	animation_player.play(&"quest_finished")
 
@@ -39,6 +43,3 @@ func animate_monster_taunt():
 
 func _on_done_pressed():
 	Quest.get_current().finish()
-
-# High Score Popup
-# New Quest Popup

@@ -205,10 +205,25 @@ func unlock_next_stage(skip_special_stages: bool = true, start_stage_index: int 
 
 ## Finishes this quest.
 func finish() -> void:
+	var data := QuestsManager.get_completion_data(source_file)
+	data.completion_count += 1
+	if data.best_score < get_attributes().score:
+		data.best_score = get_attributes().score
+		HighScorePopup.new().show_score(data.best_score)
+	data.save()
+	
+	# Quest Unlock Popup
+	if not QuestsManager.is_quest_unlocked(source_difficulty.quests[max(source_difficulty.quests.find(source_file) + 1, len(source_difficulty.quests) - 1)], source_difficulty):
+		QuestUnlockedPopup.new().show_quest_unlock(source_difficulty.quests[source_difficulty.quests.find(source_file) + 1].name, true)
+	
 	for unlocker in get_mastery_unlockers():
 		unlocker.notify_quest_won()
 	
 	won.emit()
+	
+	while DCPopup.is_popup_visible():
+		var current_popup = DCPopup._instance
+		await current_popup._popup_hidden
 	
 	#Effects.quest_finish(self)
 	
@@ -216,18 +231,6 @@ func finish() -> void:
 		#source_difficulty.name,
 		#source_file.name
 	#])
-	
-	var data := QuestsManager.get_completion_data(source_file)
-	data.completion_count += 1
-	if data.best_score < get_attributes().score:
-		data.best_score = get_attributes().score
-		# High Score Popup
-	data.save()
-	
-	while GuiLayer.get_mastery_achieved_popup().is_popup_visible():
-		await GuiLayer.get_mastery_achieved_popup().popup_hidden
-	
-	# Quest Unlock Popup
 	
 	if Quest.get_current() == self:
 		Quest.clear_current()
