@@ -223,8 +223,7 @@ func finish() -> void:
 	won.emit()
 	
 	while DCPopup.is_popup_visible():
-		var current_popup = DCPopup._instance
-		await current_popup._popup_hidden
+		await DCPopup.popup_hidden_signal()
 	
 	#Effects.quest_finish(self)
 	

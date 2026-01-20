@@ -60,3 +60,11 @@ func _popup_hide() -> void:
 
 static func is_popup_visible() -> bool:
 	return _instance._popup_visible
+
+
+static func popup_shown_signal() -> Signal:
+	return _instance._popup_shown
+
+
+static func popup_hidden_signal() -> Signal:
+	return _instance._popup_hidden
