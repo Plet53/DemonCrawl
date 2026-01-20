@@ -209,12 +209,13 @@ func finish() -> void:
 	data.completion_count += 1
 	if data.best_score < get_attributes().score:
 		data.best_score = get_attributes().score
-		HighScorePopup.new().show_score(data.best_score)
+		HighScorePopup.show_score(tr("popup.highscore.text").format({"score": data.best_score}))
 	data.save()
 	
 	# Quest Unlock Popup
-	if not QuestsManager.is_quest_unlocked(source_difficulty.quests[max(source_difficulty.quests.find(source_file) + 1, len(source_difficulty.quests) - 1)], source_difficulty):
-		QuestUnlockedPopup.new().show_quest_unlock(source_difficulty.quests[source_difficulty.quests.find(source_file) + 1].name, true)
+	var quest_to_unlock = source_difficulty.quests[min(source_difficulty.quests.find(source_file) + 1, len(source_difficulty.quests) - 1)]
+	if data.completion_count == 1 and quest_to_unlock != source_file:
+		QuestUnlockedPopup.show_quest_unlock(tr("popup.new-quest." + ("locked" if quest_to_unlock.token_shop_purchase != null else "unlocked")).format({"quest_name": tr(quest_to_unlock.name).to_upper()}))
 	
 	for unlocker in get_mastery_unlockers():
 		unlocker.notify_quest_won()
