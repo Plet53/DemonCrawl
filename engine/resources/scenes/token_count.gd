@@ -2,6 +2,10 @@
 extends HBoxContainer
 class_name TokenCount
 
+# ==============================================================================
+@onready var _label := %"TokenLabel"
+# ==============================================================================
+
 # Called when the node enters the scene tree for the first time.
 func _enter_tree() -> void:
 	if Engine.is_editor_hint():
@@ -13,4 +17,7 @@ func _enter_tree() -> void:
 
 
 func update():
-	$"Label".text = str(Codex.tokens)
+	if not is_node_ready():
+		await ready
+	
+	_label.text = str(Codex.tokens)

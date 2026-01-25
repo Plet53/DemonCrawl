@@ -295,6 +295,7 @@ theme = ExtResource("3_pcgx3")
 text = "quest-finished.title"
 
 [node name="SummaryLabel" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 128.0
@@ -307,6 +308,7 @@ text = "quest-finished.summary"
 fit_content = true
 
 [node name="ScoreLabel" type="Label" parent="."]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 128.0
@@ -333,6 +335,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="MonsterSprite" type="TextureRect" parent="MonsterTaunt/MonsterBox"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
@@ -345,6 +348,7 @@ size_flags_vertical = 4
 texture = SubResource("Texture2D_0rn3y")
 
 [node name="MonsterText" type="Label" parent="MonsterTaunt"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.51718444, 0.5171845, 0.51718444, 1)
@@ -392,9 +396,9 @@ text = "done!"
 [node name="ProfileContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.003125
+anchor_left = 0.006
 anchor_top = 1.0
-anchor_right = 0.003125
+anchor_right = 0.006
 anchor_bottom = 1.0
 offset_top = -84.0
 offset_right = 128.0
@@ -447,6 +451,7 @@ label_settings = SubResource("LabelSettings_nwnoq")
 script = ExtResource("16_vgfa3")
 
 [node name="QuestCompleteAP" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_nwwge")
 }
