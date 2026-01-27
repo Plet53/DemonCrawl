@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cs4xjk311kxho"]
+[gd_scene format=3 uid="uid://cs4xjk311kxho"]
 
-[ext_resource type="Script" uid="uid://0s6rsunpgv5i" path="res://Engine/Scenes/QuestSelect/QuestsOverview.gd" id="1_denfj"]
+[ext_resource type="Script" uid="uid://0s6rsunpgv5i" path="res://engine/scenes/quest_select/quests_overview.gd" id="1_denfj"]
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://assets/sprites/icons.png" id="2_a73kc"]
-[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="3_bq56n"]
-[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="3_ldj2m"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="3_bq56n"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://engine/resources/utility_node/tooltip_grabber.gd" id="3_ldj2m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dyfx5"]
 font_size = 8
@@ -23,45 +23,45 @@ font_color = Color(0.8, 0.8, 0.8, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="QuestsOverview" type="VBoxContainer"]
+[node name="QuestsOverview" type="VBoxContainer" unique_id=841716573]
 theme_override_constants/separation = 2
 script = ExtResource("1_denfj")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1340683243]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="Label" type="Label" parent="MarginContainer" unique_id=1201712196]
 layout_mode = 2
 text = "quest-select.overview.header"
 label_settings = SubResource("LabelSettings_dyfx5")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1122815094]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="QuestIconsContainer" type="HBoxContainer" parent="HBoxContainer"]
+[node name="QuestIconsContainer" type="HBoxContainer" parent="HBoxContainer" unique_id=699551420]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 2
 
-[node name="DifficultySelect" type="TextureRect" parent="HBoxContainer/QuestIconsContainer"]
+[node name="DifficultySelect" type="TextureRect" parent="HBoxContainer/QuestIconsContainer" unique_id=1961515722]
 unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("AtlasTexture_fjkxq")
 
-[node name="TooltipGrabber" type="Node" parent="HBoxContainer/QuestIconsContainer/DifficultySelect"]
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/QuestIconsContainer/DifficultySelect" unique_id=1695328462]
 unique_name_in_owner = true
 script = ExtResource("3_ldj2m")
 text = "NORMAL DIFFICULTY"
 context_mode = 0
 
-[node name="Control" type="Control" parent="HBoxContainer/QuestIconsContainer"]
+[node name="Control" type="Control" parent="HBoxContainer/QuestIconsContainer" unique_id=1750193262]
 layout_mode = 2
 
-[node name="PlayerDataLabel" type="Label" parent="HBoxContainer"]
+[node name="PlayerDataLabel" type="Label" parent="HBoxContainer" unique_id=955694657]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0

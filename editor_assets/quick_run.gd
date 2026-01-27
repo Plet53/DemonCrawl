@@ -2,10 +2,24 @@
 extends EditorScript
 class_name QuickRun
 
-const LOCALIZATION_STAGES_EN = preload("uid://cilbh6dvprp5")
+const LOCALIZATION_STAGES_EN := preload("uid://cilbh6dvprp5")
 
 func _run() -> void:
-	load_artifacts_to_stage_files()
+	var queue: Array[Node] = [get_tree().root]
+	while not queue.is_empty():
+		var node := queue.pop_back() as Node
+		if node is TabContainer:
+			for i in node.get_tab_count():
+				if node.get_tab_title(i).match("Debugger*"):
+					var debugger := node.get_child(i) as EditorDock
+					
+					debugger.title_color = node.get_child(0).title_color
+					debugger.dock_icon = null
+					debugger.title = "Debugger"
+					print(debugger.icon_name)
+					print(debugger.dock_icon)
+		
+		queue.append_array(node.get_children())
 
 
 static func load_artifacts_to_stage_files() -> void:
