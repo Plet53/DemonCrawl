@@ -4,6 +4,7 @@ class_name Difficulty
 # ==============================================================================
 @export var name := ""  ## The name of the difficulty.
 @export var icon: Texture2D = null  ## The icon of the difficulty.
+@export var color := Color.WHITE
 
 @export var conditions: Array[Condition] = []
 

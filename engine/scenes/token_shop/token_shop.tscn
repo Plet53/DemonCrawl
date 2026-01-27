@@ -1,19 +1,21 @@
-[gd_scene load_steps=21 format=3 uid="uid://52plnh26fjgo"]
+[gd_scene load_steps=24 format=3 uid="uid://52plnh26fjgo"]
 
-[ext_resource type="Script" uid="uid://d2q0svdo1sdof" path="res://Engine/Scenes/TokenShop/TokenShop.gd" id="1_x20b8"]
-[ext_resource type="Texture2D" uid="uid://b5rt77loesna7" path="res://assets/Backgrounds/token_shop_sky.png" id="2_c6u0t"]
+[ext_resource type="Script" uid="uid://d2q0svdo1sdof" path="res://engine/scenes/token_shop/token_shop.gd" id="1_x20b8"]
+[ext_resource type="Texture2D" uid="uid://b5rt77loesna7" path="res://assets/backgrounds/token_shop_sky.png" id="2_c6u0t"]
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://assets/sprites/icons.png" id="3_i3xv6"]
-[ext_resource type="Texture2D" uid="uid://chamkmak0kl0t" path="res://assets/Backgrounds/token_shop.png" id="3_j1oel"]
-[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="4_nqp1b"]
-[ext_resource type="Shader" uid="uid://duejth3p8iwji" path="res://Engine/Scenes/MainMenu/ProfileSelect.gdshader" id="4_uy6s8"]
-[ext_resource type="Script" uid="uid://cypm6gm4lirv1" path="res://Engine/Scenes/MainMenu/ChangePageButton.gd" id="5_52qn8"]
-[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="6_f5ovn"]
-[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Engine/Resources/UtilityNode/Avatar_atlas.tres" id="10_hyis6"]
-[ext_resource type="Script" uid="uid://d16rb2jruql4e" path="res://Engine/Resources/UtilityNode/Avatar.gd" id="11_3wli1"]
-[ext_resource type="Script" uid="uid://bdhw3j6nfg2h1" path="res://Engine/Resources/UtilityNode/XPBar.gd" id="12_qob23"]
-[ext_resource type="Script" uid="uid://cqt7ciq3ocqkl" path="res://Engine/Resources/UtilityNode/ProfileNameLabel.gd" id="13_nipms"]
-[ext_resource type="Script" uid="uid://bp8kqfn8liwqp" path="res://Engine/Resources/UtilityNode/FadeButton.gd" id="14_7gi5r"]
-[ext_resource type="Script" uid="uid://bs8ee2q1jttgb" path="res://Engine/Resources/UtilityNode/ProfileLevelLabel.gd" id="14_37g46"]
+[ext_resource type="Texture2D" uid="uid://chamkmak0kl0t" path="res://assets/backgrounds/token_shop.png" id="3_j1oel"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="4_nqp1b"]
+[ext_resource type="Shader" uid="uid://duejth3p8iwji" path="res://engine/scenes/main_menu/profile_select.gdshader" id="4_uy6s8"]
+[ext_resource type="Script" uid="uid://cypm6gm4lirv1" path="res://engine/scenes/main_menu/change_page_button.gd" id="5_52qn8"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://engine/resources/utility_node/tooltip_grabber.gd" id="6_f5ovn"]
+[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://engine/resources/utility_node/avatar_atlas.tres" id="10_hyis6"]
+[ext_resource type="Script" uid="uid://d16rb2jruql4e" path="res://engine/resources/utility_node/avatar.gd" id="11_3wli1"]
+[ext_resource type="Script" uid="uid://bdhw3j6nfg2h1" path="res://engine/resources/utility_node/xp_bar.gd" id="12_qob23"]
+[ext_resource type="Script" uid="uid://cqt7ciq3ocqkl" path="res://engine/resources/utility_node/profile_name_label.gd" id="13_nipms"]
+[ext_resource type="Script" uid="uid://bp8kqfn8liwqp" path="res://engine/resources/utility_node/fade_button.gd" id="14_7gi5r"]
+[ext_resource type="Script" uid="uid://bs8ee2q1jttgb" path="res://engine/resources/utility_node/profile_level_label.gd" id="14_37g46"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="15_e7w8x"]
+[ext_resource type="PackedScene" uid="uid://bbygvltcxf6x" path="res://engine/resources/scenes/token_count.tscn" id="16_rrxp3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahp6w"]
 atlas = ExtResource("3_i3xv6")
@@ -39,9 +41,15 @@ shader_parameter/inversion = 0.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_ts3ab"]
 font_size = 8
-font_color = Color(0.745098, 0.745098, 0.745098, 1)
+font_color = Color(0.74509805, 0.74509805, 0.74509805, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rrxp3"]
+font = ExtResource("15_e7w8x")
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 1)
 
 [node name="TokenShop" type="Control"]
 layout_mode = 3
@@ -185,8 +193,35 @@ script = ExtResource("13_nipms")
 [node name="ProfileLevelLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
-text = "Lv1"
+text = "generic.level.abbr.1"
 label_settings = SubResource("LabelSettings_ts3ab")
 script = ExtResource("14_37g46")
+
+[node name="TokenShopLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = 10.0
+offset_right = -10.0
+grow_horizontal = 0
+size_flags_vertical = 1
+text = "token-shop.label"
+label_settings = SubResource("LabelSettings_rrxp3")
+
+[node name="TokenCount" parent="." instance=ExtResource("16_rrxp3")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -16.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [connection signal="pressed" from="BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]

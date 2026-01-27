@@ -35,7 +35,18 @@ static var selected_mastery_changed := Signal() :
 			selected_mastery_changed = Signal(Codex, "_selected_mastery_changed")
 		return selected_mastery_changed
 
-static var tokens: int = Eternal.create(0)
+static var tokens: int = Eternal.create(0) :
+	set(new_token_count):
+		tokens = new_token_count
+		
+		token_count_changed.emit()
+
+static var token_count_changed := Signal() :
+	get:
+		if token_count_changed.is_null():
+			(Codex as GDScript).add_user_signal("token_count_changed")
+			token_count_changed = Signal(Codex, "token_count_changed")
+		return token_count_changed
 
 static var artifacts: Dictionary[StageFile, int] = Eternal.create({} as Dictionary[StageFile, int])
 
