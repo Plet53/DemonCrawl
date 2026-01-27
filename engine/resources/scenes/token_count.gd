@@ -3,7 +3,7 @@ extends HBoxContainer
 class_name TokenCount
 
 # ==============================================================================
-@onready var _label := %"TokenLabel"
+@onready var _label: Label = %TokenLabel
 # ==============================================================================
 
 # Called when the node enters the scene tree for the first time.
