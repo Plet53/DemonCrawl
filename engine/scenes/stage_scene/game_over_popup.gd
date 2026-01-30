@@ -33,11 +33,12 @@ func _on_view_board_pressed() -> void:
 	
 	await _animation_player.animation_finished
 	
+	get_parent().show_menu_button()
 	hide()
 
 
 func _on_restart_pressed() -> void:
-	pass # Replace with function body.
+	Quest.get_current().restart()
 
 
 func _on_return_to_menu_pressed() -> void:

@@ -4,6 +4,28 @@
 [ext_resource type="Texture2D" uid="uid://bcr5ubtty8lg6" path="res://assets/sprites/popup_gameover.png" id="2_vg4ut"]
 [ext_resource type="Texture2D" uid="uid://dd7cvk4fxsqv7" path="res://assets/sprites/game_over_text.png" id="3_vg4ut"]
 [ext_resource type="Script" uid="uid://cv88f0sklvwcj" path="res://engine/resources/utility_node/dc_button_2.gd" id="4_atngb"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="5_lp040"]
+
+[sub_resource type="Texture2D" id="Texture2D_5eh1x"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_lp040")
+name = "arrow_small/left"
+metadata/_custom_type_script = "uid://jkalggo6fr21"
+
+[sub_resource type="Texture2D" id="Texture2D_j07xn"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_lp040")
+name = "icons/restart_small"
+metadata/_custom_type_script = "uid://jkalggo6fr21"
+
+[sub_resource type="Texture2D" id="Texture2D_atngb"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_lp040")
+name = "arrow_small/right"
+metadata/_custom_type_script = "uid://jkalggo6fr21"
 
 [sub_resource type="Animation" id="Animation_mvt3q"]
 length = 0.001
@@ -97,7 +119,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0.2, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(640, 392), Vector2(640, 360)]
+"values": [Vector2(640, 412), Vector2(640, 380)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -162,31 +184,40 @@ stretch_mode = 5
 
 [node name="CauseLabel" type="Label" parent="ContentsAnchor/VBoxContainer" unique_id=259349970]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.66245234, 0.66245234, 0.6624523, 1)
-text = "placeholder text lol lmao"
+text = "placeholder text bwl"
 horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="ContentsAnchor/VBoxContainer" unique_id=771682387]
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ContentsAnchor/VBoxContainer" unique_id=886806641]
 layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="ViewBoard" type="Button" parent="ContentsAnchor/VBoxContainer/HBoxContainer" unique_id=232671597]
+[node name="ViewBoard" type="Button" parent="ContentsAnchor/VBoxContainer/HBoxContainer" unique_id=193771122]
 layout_mode = 2
 text = "game-over.view"
+icon = SubResource("Texture2D_5eh1x")
+alignment = 2
 script = ExtResource("4_atngb")
 metadata/_custom_type_script = "uid://cv88f0sklvwcj"
 
 [node name="Restart" type="Button" parent="ContentsAnchor/VBoxContainer/HBoxContainer" unique_id=659916275]
 layout_mode = 2
 text = "game-over.restart"
+icon = SubResource("Texture2D_j07xn")
 script = ExtResource("4_atngb")
 metadata/_custom_type_script = "uid://cv88f0sklvwcj"
 
 [node name="ReturnToMenu" type="Button" parent="ContentsAnchor/VBoxContainer/HBoxContainer" unique_id=1101666747]
 layout_mode = 2
 text = "game-over.return"
+icon = SubResource("Texture2D_atngb")
 icon_alignment = 2
 script = ExtResource("4_atngb")
 metadata/_custom_type_script = "uid://cv88f0sklvwcj"

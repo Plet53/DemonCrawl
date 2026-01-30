@@ -191,6 +191,23 @@ func start() -> void:
 	started.emit()
 
 
+## Start a new quest with the selected parameters of the current one.
+func restart() -> void:
+	var fresh_quest := source_file.generate()
+	fresh_quest.source_difficulty = source_difficulty.duplicate()
+	fresh_quest.set_as_current()
+	
+	fresh_quest.source_difficulty.apply_starting_values(fresh_quest)
+	
+	GuiLayer.get_statbar().quest = fresh_quest
+	
+	fresh_quest.start()
+	
+	Eternity.save()
+	
+	get_tree().change_scene_to_file("res://engine/scenes/stage_select/stage_select.tscn")
+
+
 ## Unlocks the next stage of the quest, starting at [param stage].
 func unlock_next_stage(skip_special_stages: bool = true, start_stage_index: int = selected_stage_idx) -> void:
 	if start_stage_index + 1 >= get_stages().size():

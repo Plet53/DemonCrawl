@@ -126,6 +126,10 @@ func cast(icon: Texture2D) -> CellData:
 	return cell.get_data() if cell else null
 
 
+func show_menu_return() -> void:
+	_menu_return_button.show_button()
+
+
 func _on_stage_completed() -> void:
 	stage_instance.get_timer().pause()
 	stage_instance.get_status_timer().pause()
