@@ -159,6 +159,10 @@ popup.new-quest.title;new quest discovered!
 popup.new-quest.unlocked;{quest_name} is now available to play.
 popup.new-quest.locked;{quest_name} is available for purchase from the Token Shop.
 
+game-over.view;VIEW BOARD
+game-over.restart;RESTART
+game-over.return;RETURN TO MENU
+
 stage.special.item-shop;Item Shop
 stage.special.item-shop.description;Spend coins to buy items. 
 stage.special.item-shop.text;CHOOSE AN ITEM:

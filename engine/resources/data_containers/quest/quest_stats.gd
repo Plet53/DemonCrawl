@@ -3,7 +3,7 @@ extends Node
 class_name QuestStats
 
 # ==============================================================================
-const REVIVE_TEXTURE: Texture2D = null # TODO
+const REVIVE_TEXTURE: Texture2D = preload("res://assets/sprites/revive.png")
 # ==============================================================================
 @export var max_life := 0 :
 	set(value):
@@ -100,14 +100,14 @@ func die(source: Object) -> void:
 		Toasts.add_toast("You now have %d revives..." % revives, REVIVE_TEXTURE)
 		return
 	
-	lose()
+	lose(source)
 
 
 ## Causes the player to immediately lose the quest. If the player has any revives,
 ## they will not be used to revive the player. See also [method die].
-func lose() -> void:
-	EffectManager.propagate(get_effects().lose)
-	EffectManager.propagate(get_effects().lost)
+func lose(source: Object) -> void:
+	EffectManager.propagate(get_effects().lose, source)
+	EffectManager.propagate(get_effects().lost, source)
 	
 	# TODO
 

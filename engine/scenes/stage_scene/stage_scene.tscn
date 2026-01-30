@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://assets/skins/default/bg.png" id="6_n7lcx"]
 [ext_resource type="Shader" uid="uid://c4dsu0mr2lukt" path="res://engine/scenes/stage_scene/board_background.gdshader" id="9_do03l"]
 [ext_resource type="PackedScene" uid="uid://cnbk18l62cltc" path="res://engine/resources/singletons/mouse_cast_sprite.tscn" id="10_m6ujj"]
+[ext_resource type="PackedScene" uid="uid://b2diry5snqwv4" path="res://engine/scenes/stage_scene/menu_return_button.tscn" id="11_ko83b"]
 [ext_resource type="Script" uid="uid://ntxohcqx3p0c" path="res://engine/scenes/stage_scene/stage_timer_label.gd" id="14_ffsll"]
 [ext_resource type="PackedScene" uid="uid://dodpk1h3w0qvp" path="res://engine/scenes/stage_scene/finish_popup.tscn" id="15_df000"]
 [ext_resource type="PackedScene" uid="uid://8qlat3a8vvtm" path="res://engine/resources/scenes/status_effect_list.tscn" id="15_fwvnx"]
@@ -19,6 +20,7 @@
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="16_4hyf5"]
 [ext_resource type="Script" uid="uid://crfdoctrngeis" path="res://engine/scenes/stage_scene/stage_power_label.gd" id="16_vj40o"]
 [ext_resource type="Script" uid="uid://d1c6fxxsk1ugt" path="res://engine/resources/singletons/gui_enabler.gd" id="19_kjs20"]
+[ext_resource type="PackedScene" uid="uid://dbuu6gsvx1d14" path="res://engine/scenes/stage_scene/game_over_popup.tscn" id="19_u3gfh"]
 
 [sub_resource type="Theme" id="Theme_7mm6j"]
 Cell/icons/bg = ExtResource("1_ar66c")
@@ -102,9 +104,20 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -112.0
-offset_top = 20.0
+offset_top = 58.0
 offset_right = 112.0
-offset_bottom = 88.0
+offset_bottom = 126.0
+grow_horizontal = 2
+
+[node name="MenuReturnButton" parent="ForegroundCanvas" unique_id=1063624514 instance=ExtResource("11_ko83b")]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_top = 58.0
+offset_right = 112.0
+offset_bottom = 126.0
 grow_horizontal = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ForegroundCanvas" unique_id=1380456677]
@@ -176,6 +189,9 @@ visible = false
 [node name="FinishPopup" parent="." unique_id=888028530 instance=ExtResource("15_df000")]
 unique_name_in_owner = true
 
+[node name="GameOverPopup" parent="." unique_id=1364300935 instance=ExtResource("19_u3gfh")]
+unique_name_in_owner = true
+
 [node name="Board" parent="." unique_id=1564397498 instance=ExtResource("4_xuksn")]
 unique_name_in_owner = true
 layout_mode = 1
@@ -188,3 +204,4 @@ script = ExtResource("19_kjs20")
 _disabled = 0
 
 [connection signal="pressed" from="ForegroundCanvas/FinishButton" to="." method="_on_finish_button_pressed"]
+[connection signal="pressed" from="ForegroundCanvas/MenuReturnButton" to="." method="_on_menu_return_button_pressed"]

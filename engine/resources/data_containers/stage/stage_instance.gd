@@ -60,6 +60,7 @@ func _ready() -> void:
 		get_grid().add_child(data)
 	
 	get_quest().get_attributes().change_property.connect(_on_change_attribute)
+	get_quest().get_stats().get_effects().lose.connect(_on_lose)
 	
 	emit_changed()
 
@@ -454,6 +455,10 @@ func _on_change_attribute(attribute: StringName, value: Variant) -> Variant:
 func count_first_opened_cell() -> int:
 	get_quest().get_attributes().change_property.disconnect(_on_change_attribute)
 	return get_quest().get_attributes().cells_opened_since_mistake + 1
+
+
+func _on_lose(source: Object):
+	pass
 
 
 ## Returns whether this [StageInstance] has been generated. If this is not the

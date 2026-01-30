@@ -31,6 +31,7 @@ static var ambience_volume: float = Eternal.create(1.0, "settings")
 # ==============================================================================
 @onready var _stage_background: StageBackground = %StageBackground : get = get_background
 @onready var _finish_button: FinishButton = %FinishButton
+@onready var _menu_return_button: FinishButton = %MenuReturnButton
 @onready var _tweener_canvas: CanvasLayer = %TweenerCanvas
 @onready var _mouse_cast_sprite: MouseCastSprite = %MouseCastSprite
 @onready var _finish_popup: FinishPopup = %FinishPopup
@@ -128,13 +129,19 @@ func cast(icon: Texture2D) -> CellData:
 func _on_stage_completed() -> void:
 	stage_instance.get_timer().pause()
 	stage_instance.get_status_timer().pause()
-	_finish_button.show()
+	_finish_button.show_button()
 	
 	_music_player.stop()
 
 
 func _on_board_stage_finished() -> void:
 	_on_stage_completed()
+
+
+func _on_menu_return_button_pressed() -> void:
+	_menu_return_button.hide()
+	
+	Quest.get_current().lose()
 
 
 func _on_finish_button_pressed() -> void:
