@@ -34,7 +34,7 @@ static var current_changed := Signal() :
 signal current_stage_changed()
 
 signal started()
-@warning_ignore("unused_signal") signal lost()
+signal lost()
 signal won()
 #signal loaded()
 #signal unloaded()
@@ -239,6 +239,18 @@ func finish() -> void:
 	get_tree().change_scene_to_file("res://engine/scenes/main_menu/main_menu.tscn")
 	#notify_unloaded()
 
+
+## Destroys this quest.
+func lose() -> void:
+	lost.emit()
+	
+	if Quest.get_current() == self:
+		Quest.clear_current()
+	
+	Eternity.save()
+	
+	get_tree().change_scene_to_file("res://engine/scenes/main_menu/main_menu.tscn")
+	#notify_unloaded()
 
 func pass_turn() -> void:
 	if has_current_stage():

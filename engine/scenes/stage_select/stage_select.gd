@@ -43,12 +43,7 @@ func get_quest() -> Quest:
 
 
 func _on_abandon_button_pressed() -> void:
-	Quest.get_current().lost.emit()
-	#Quest.get_current().notify_unloaded()
-	Quest.clear_current()
-	Eternity.save()
-	
-	get_tree().change_scene_to_file("res://engine/scenes/main_menu/main_menu.tscn")
+	Quest.get_current().lose()
 
 
 func _on_back_to_menu_button_pressed() -> void:
