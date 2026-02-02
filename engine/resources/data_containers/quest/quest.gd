@@ -5,6 +5,8 @@ class_name Quest
 ## A single quest with any amount of [Stage]s.
 
 # ==============================================================================
+const GAME_OVER_POPUP := preload("res://engine/scenes/stage_scene/game_over_popup.tscn")
+# ==============================================================================
 static var _current: Quest = Eternal.create(null) : set = _set_current, get = get_current
 
 static var current_changed := Signal() :
@@ -191,7 +193,7 @@ func start() -> void:
 	started.emit()
 
 
-## Start a new quest with the selected parameters of the current one.
+## Start a new quest with the same parameters as the current one.
 func restart() -> void:
 	var fresh_quest := source_file.generate()
 	fresh_quest.source_difficulty = source_difficulty.duplicate()
@@ -206,6 +208,7 @@ func restart() -> void:
 	Eternity.save()
 	
 	get_tree().change_scene_to_file("res://engine/scenes/stage_select/stage_select.tscn")
+
 
 
 ## Unlocks the next stage of the quest, starting at [param stage].

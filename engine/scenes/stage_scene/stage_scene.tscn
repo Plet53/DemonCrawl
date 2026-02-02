@@ -20,7 +20,6 @@
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="16_4hyf5"]
 [ext_resource type="Script" uid="uid://crfdoctrngeis" path="res://engine/scenes/stage_scene/stage_power_label.gd" id="16_vj40o"]
 [ext_resource type="Script" uid="uid://d1c6fxxsk1ugt" path="res://engine/resources/singletons/gui_enabler.gd" id="19_kjs20"]
-[ext_resource type="PackedScene" uid="uid://dbuu6gsvx1d14" path="res://engine/scenes/stage_scene/game_over_popup.tscn" id="19_u3gfh"]
 
 [sub_resource type="Theme" id="Theme_7mm6j"]
 Cell/icons/bg = ExtResource("1_ar66c")
@@ -187,9 +186,6 @@ unique_name_in_owner = true
 visible = false
 
 [node name="FinishPopup" parent="." unique_id=888028530 instance=ExtResource("15_df000")]
-unique_name_in_owner = true
-
-[node name="GameOverPopup" parent="." unique_id=1364300935 instance=ExtResource("19_u3gfh")]
 unique_name_in_owner = true
 
 [node name="Board" parent="." unique_id=1564397498 instance=ExtResource("4_xuksn")]
