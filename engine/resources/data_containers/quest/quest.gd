@@ -199,7 +199,7 @@ func restart() -> void:
 	fresh_quest.source_difficulty = source_difficulty.duplicate()
 	fresh_quest.set_as_current()
 	
-	fresh_quest.source_difficulty.apply_starting_values(fresh_quest)
+	source_difficulty.apply_starting_values(fresh_quest)
 	
 	GuiLayer.get_statbar().quest = fresh_quest
 	
@@ -261,7 +261,7 @@ func finish() -> void:
 
 
 ## Destroys this quest.
-func lose() -> void:
+func abandon() -> void:
 	lost.emit()
 	
 	if Quest.get_current() == self:

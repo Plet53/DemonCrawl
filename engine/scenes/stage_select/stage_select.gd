@@ -43,7 +43,7 @@ func get_quest() -> Quest:
 
 
 func _on_abandon_button_pressed() -> void:
-	Quest.get_current().lose()
+	Quest.get_current().abandon()
 
 
 func _on_back_to_menu_button_pressed() -> void:

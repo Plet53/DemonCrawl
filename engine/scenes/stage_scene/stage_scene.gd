@@ -145,7 +145,7 @@ func _on_board_stage_finished() -> void:
 func _on_menu_return_button_pressed() -> void:
 	_menu_return_button.hide()
 	
-	Quest.get_current().lose()
+	Quest.get_current().abandon()
 
 
 func _on_finish_button_pressed() -> void:

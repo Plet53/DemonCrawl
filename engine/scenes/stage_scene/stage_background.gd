@@ -23,9 +23,17 @@ func flash_red(duration: float = FLASH_DURATION_DEFAULT) -> void:
 
 
 func flash(color: Color, duration: float = FLASH_DURATION_DEFAULT) -> void:
-	material.set_shader_parameter("color_transform_enabled", true)
-	material.set_shader_parameter("color_transform", color)
+	set_color(color)
 	
 	await get_tree().create_timer(duration).timeout
 	
+	reset_color()
+
+
+func set_color(color: Color) -> void:
+	material.set_shader_parameter("color_transform_enabled", true)
+	material.set_shader_parameter("color_transform", color)
+
+
+func reset_color() -> void:
 	material.set_shader_parameter("color_transform_enabled", false)
