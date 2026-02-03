@@ -141,8 +141,9 @@ _data = {
 &"popup_show": SubResource("Animation_g65m4")
 }
 
-[node name="GameOverPopup" type="CanvasLayer" unique_id=1364300935]
+[node name="GameOverPopup" type="CanvasLayer" unique_id=1364300935 node_paths=PackedStringArray("view_button")]
 script = ExtResource("1_kgcqs")
+view_button = NodePath("ContentsAnchor/VBoxContainer/HBoxContainer/ViewBoard")
 
 [node name="BackgroundAnchor" type="Node2D" parent="." unique_id=831985665]
 position = Vector2(0, 360)

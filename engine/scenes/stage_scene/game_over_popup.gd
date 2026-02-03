@@ -5,14 +5,9 @@ class_name GameOverPopup
 @onready var _cause_label: Label = %CauseLabel
 @onready var _animation_player = %AnimationPlayer
 # ==============================================================================
-@export var cause: String = "":
-	set(value):
-		cause = value
+@export var view_button: DCButton2
+@export var cause: String = ""
 # ==============================================================================
-
-func _ready() -> void:
-	hide()
-
 
 func popup() -> void:
 	show()
@@ -48,4 +43,4 @@ func _on_return_to_menu_pressed() -> void:
 	
 	hide()
 	
-	Quest.get_current().lose()
+	Quest.get_current().abandon()

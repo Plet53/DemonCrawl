@@ -310,6 +310,15 @@ func _on_stage_finished(stage_instance: StageInstanceBase) -> void:
 	
 	get_tree().change_scene_to_file("res://engine/scenes/stage_select/stage_select.tscn")
 
+func _on_lose(source: Object) -> void:
+	var popup = GAME_OVER_POPUP.instantiate()
+	add_child(popup)
+	
+	if get_current_stage().is_special():
+		popup.view_button.queue_free()
+	popup.cause = source.name # TODO
+	popup.show()
+
 #endregion
 
 #region getters

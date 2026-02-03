@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://cf6pwvend36k4"]
 
 [ext_resource type="Script" uid="uid://dlk23qy0u2xwh" path="res://assets/special_stages/item_shop/item_shop_scene.gd" id="1_3moa5"]
-[ext_resource type="Texture2D" uid="uid://bgg7dvorx22m1" path="res://assets/backgrounds/item_shop.png" id="1_hllyk"]
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="2_7h07o"]
-[ext_resource type="Script" uid="uid://d5w3bihu00x" path="res://engine/scenes/stage_scene/stage_background.gd" id="3_pmunv"]
+[ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://assets/skins/default/bg.png" id="2_ljhgl"]
 [ext_resource type="Shader" uid="uid://dg3b7w8v3tf2r" path="res://assets/special_stages/item_shop/item_shop.gdshader" id="4_6l62f"]
 [ext_resource type="PackedScene" uid="uid://d1v0qvvw8dwe0" path="res://engine/resources/scenes/dc_button.tscn" id="5_3qi0c"]
 [ext_resource type="Texture2D" uid="uid://cq175wtkgma0r" path="res://assets/special_stages/item_shop/item_shop_present_logo.png" id="5_gc6dr"]
@@ -32,16 +31,14 @@ grow_vertical = 2
 scale = Vector2(4, 4)
 script = ExtResource("1_3moa5")
 
-[node name="StageBackground" type="TextureRect" parent="." unique_id=864341450]
+[node name="StageBackground" type="TextureRect" parent="." unique_id=592587943]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_hllyk")
-script = ExtResource("3_pmunv")
-metadata/_custom_type_script = "uid://d5w3bihu00x"
+texture = ExtResource("2_ljhgl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1566183540]
 layer = 20
