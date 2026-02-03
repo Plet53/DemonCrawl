@@ -1,4 +1,4 @@
-﻿key;en
+key;en
 
 scene-return.main;RETURN TO MAIN MENU
 scene-return.quests;RETURN TO QUESTS
@@ -133,6 +133,8 @@ stats.defense.hover.text;DEFENSE
 stats.defense.hover.subtext;Reduces incoming damage to a minimum of 1.
 stats.coins.hover.text;COINS
 stats.coins.hover.subtext;Spend money at shops.
+stats.revives.hover;You also have {revives} revives.
+stats.revives.remaining;You now have {revives} revives...
 stats.overview.header;YOUR OVERVIEW
 stats.overview.score;Score: {score} pts
 stats.overview.cells-opened-since-mistake;Cells opened since last mistake: {cells}

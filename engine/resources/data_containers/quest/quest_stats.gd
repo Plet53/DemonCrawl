@@ -97,7 +97,7 @@ func die(source: Object) -> void:
 	if revives > 0:
 		revives -= 1
 		life = max_life
-		Toasts.add_toast("You now have %d revives..." % revives, REVIVE_TEXTURE)
+		Toasts.add_toast(tr("stats.revives.remaining").format({"revives": revives}), REVIVE_TEXTURE)
 		return
 	
 	lose(source)
