@@ -68,10 +68,12 @@ func _ready() -> void:
 	get_event_bus_manager()
 	
 	get_stage_effects().get_guaranteed_objects.connect(source_difficulty.get_guaranteed_objects)
+	get_stats().get_effects().lose.connect(_on_lose)
 
 
 func _exit_tree() -> void:
 	get_stage_effects().get_guaranteed_objects.disconnect(source_difficulty.get_guaranteed_objects)
+	get_stats().get_effects().lose.disconnect(_on_lose)
 
 #endregion
 
@@ -311,13 +313,15 @@ func _on_stage_finished(stage_instance: StageInstanceBase) -> void:
 	get_tree().change_scene_to_file("res://engine/scenes/stage_select/stage_select.tscn")
 
 func _on_lose(source: Object) -> void:
-	var popup = GAME_OVER_POPUP.instantiate()
+	var popup := GAME_OVER_POPUP.instantiate()
 	add_child(popup)
 	
-	if get_current_stage().is_special():
-		popup.view_button.queue_free()
+	if has_current_stage():
+		if get_current_stage().get_stage().is_special():
+			popup.view_button.queue_free()
+	
 	popup.cause = source.name # TODO
-	popup.show()
+	popup.popup()
 
 #endregion
 

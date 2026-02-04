@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cwygs6gkixgni" path="res://assets/special_stages/bazaar/bazaar_scene.gd" id="1_ouai6"]
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="2_6vkfb"]
-[ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://assets/skins/default/bg.png" id="2_mln54"]
+[ext_resource type="Texture2D" uid="uid://dbfxo2026kfl" path="res://assets/backgrounds/bazaar.png" id="2_mln54"]
 [ext_resource type="Shader" uid="uid://dg3b7w8v3tf2r" path="res://assets/special_stages/item_shop/item_shop.gdshader" id="3_le14x"]
 [ext_resource type="Texture2D" uid="uid://cq175wtkgma0r" path="res://assets/special_stages/item_shop/item_shop_present_logo.png" id="4_4cpid"]
 [ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://engine/resources/scenes/frame.tscn" id="5_4cpid"]
@@ -37,7 +37,7 @@ grow_vertical = 2
 scale = Vector2(4, 4)
 script = ExtResource("1_ouai6")
 
-[node name="StageBackground" type="TextureRect" parent="." unique_id=565153016]
+[node name="Background" type="TextureRect" parent="." unique_id=565153016]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

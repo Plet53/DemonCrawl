@@ -457,7 +457,7 @@ func count_first_opened_cell() -> int:
 	return get_quest().get_attributes().cells_opened_since_mistake + 1
 
 
-func _on_lose(source: Object):
+func _on_lose(_source: Object):
 	pass
 
 
