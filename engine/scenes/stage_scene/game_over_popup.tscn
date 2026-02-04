@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dkbdswottbpr4" path="res://engine/scenes/stage_scene/game_over_popup.gd" id="1_kgcqs"]
 [ext_resource type="Texture2D" uid="uid://bcr5ubtty8lg6" path="res://assets/sprites/popup_gameover.png" id="2_vg4ut"]
+[ext_resource type="Texture2D" uid="uid://606xceoo8pq" path="res://assets/sprites/logo_eye.png" id="3_j07xn"]
 [ext_resource type="Texture2D" uid="uid://dd7cvk4fxsqv7" path="res://assets/sprites/game_over_text.png" id="3_vg4ut"]
 [ext_resource type="Script" uid="uid://cv88f0sklvwcj" path="res://engine/resources/utility_node/dc_button_2.gd" id="4_atngb"]
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="5_lp040"]
@@ -164,6 +165,20 @@ texture = ExtResource("2_vg4ut")
 modulate = Color(1, 1, 1, 0)
 position = Vector2(0, 392)
 scale = Vector2(4, 4)
+
+[node name="LeftEye" type="TextureRect" parent="ContentsAnchor" unique_id=324665004]
+offset_left = -15.0
+offset_top = -57.0
+offset_right = -5.0
+offset_bottom = -48.0
+texture = ExtResource("3_j07xn")
+
+[node name="RightEye" type="TextureRect" parent="ContentsAnchor" unique_id=1407173064]
+offset_left = 3.0
+offset_top = -57.0
+offset_right = 13.0
+offset_bottom = -48.0
+texture = ExtResource("3_j07xn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ContentsAnchor" unique_id=1441282896]
 anchors_preset = 8
