@@ -2,6 +2,8 @@ extends CanvasLayer
 class_name GameOverPopup
 
 # ==============================================================================
+const GAME_OVER_AUDIO: AudioStream = preload("res://assets/music/game_over.ogg")
+# ==============================================================================
 @onready var _cause_label: Label = %CauseLabel
 @onready var _animation_player = %AnimationPlayer
 # ==============================================================================
@@ -17,6 +19,8 @@ func popup() -> void:
 		cause_string = cause_string.format({"cause": cause.to_upper()})
 	
 	_cause_label.text = cause_string
+	
+	AudioBus.play_music(GAME_OVER_AUDIO)
 	
 	_animation_player.play("popup_show")
 	

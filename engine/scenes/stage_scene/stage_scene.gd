@@ -20,12 +20,9 @@ static var ambience_volume: float = Eternal.create(1.0, "settings")
 		if not is_node_ready():
 			await ready
 		
-		_music_player.stream = value.get_stage().file.music
-		_music_player.play()
-		_ambience_a_player.stream = value.get_stage().file.ambience_a
-		_ambience_a_player.play()
-		_ambience_b_player.stream = value.get_stage().file.ambience_b
-		_ambience_b_player.play()
+		AudioBus.play_music(value.get_stage().file.music)
+		AudioBus.play_ambiance_a(value.get_stage().file.ambience_a)
+		AudioBus.play_ambiance_b(value.get_stage().file.ambience_b)
 		
 		theme = value.get_stage().get_theme()
 # ==============================================================================
@@ -38,9 +35,6 @@ static var ambience_volume: float = Eternal.create(1.0, "settings")
 @onready var _status_effect_list: StatusEffectList = %StatusEffectList
 @onready var _board: Board = %Board : get = get_board
 @onready var _projectiles: Node2D = %Projectiles
-@onready var _music_player: AudioStreamPlayer = %MusicPlayer
-@onready var _ambience_a_player: AudioStreamPlayer = %AmbienceAPlayer
-@onready var _ambience_b_player: AudioStreamPlayer = %AmbienceBPlayer
 # ==============================================================================
 signal finish_pressed()
 # ==============================================================================
@@ -63,9 +57,11 @@ func _ready() -> void:
 	
 	_status_effect_list.manager = Quest.get_current().get_status_manager()
 	
-	_music_player.volume_linear = StageScene.music_volume
-	_ambience_a_player.volume_linear = StageScene.ambience_volume
-	_ambience_b_player.volume_linear = StageScene.ambience_volume
+	AudioBus.set_volumes([
+		StageScene.music_volume,
+		1.0, # TODO: Sound Effects
+		StageScene.ambience_volume
+	])
 
 
 ## Returns the scene's [StageBackground] instance.
@@ -135,7 +131,7 @@ func _on_stage_completed() -> void:
 	stage_instance.get_status_timer().pause()
 	_finish_button.show_button()
 	
-	_music_player.stop()
+	AudioBus.stop_music()
 
 
 func _on_board_stage_finished() -> void:

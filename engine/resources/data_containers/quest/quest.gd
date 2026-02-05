@@ -319,6 +319,9 @@ func _on_lose(source: Object) -> void:
 	if has_current_stage():
 		if get_current_stage().get_stage().is_special():
 			popup.view_button.queue_free()
+		else:
+			var scene := get_current_stage().get_scene()
+			scene.get_background().set_color(Color.RED)
 	
 	popup.cause = source.name # TODO
 	popup.popup()
