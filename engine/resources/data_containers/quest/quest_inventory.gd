@@ -50,16 +50,20 @@ func get_item(index: int) -> Item:
 
 
 func item_gain(item: Item) -> void:
-	add_child(item)
-	emit_changed()
-	item.notify_gained()
+	var should_gain: bool = EffectManager.propagate_mutable(get_effects().item_gain, 1, item, true)
+	if should_gain:
+		add_child(item)
+		emit_changed()
+		item.notify_gained()
 
 
 func item_lose(item: Item) -> void:
-	item.queue_free()
-	remove_child(item)
-	emit_changed()
-	item.notify_lost()
+	var should_lose: bool = EffectManager.propagate_mutable(get_effects().item_lose, 1, item, true)
+	if should_lose:
+		item.queue_free()
+		remove_child(item)
+		emit_changed()
+		item.notify_lost()
 
 
 func item_transform(old_item: Item, new_item: Item) -> void:
@@ -115,3 +119,5 @@ func get_effects() -> InventoryEffects:
 class InventoryEffects extends EventBus:
 	signal gain_mana(mana: int, source: Object)
 	signal mana_gained(mana: int, source: Object)
+	signal item_gain(item: Item, should_gain: bool)
+	signal item_lose(item: Item, should_lose: bool)
