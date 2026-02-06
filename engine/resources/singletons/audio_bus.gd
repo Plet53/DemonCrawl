@@ -35,13 +35,10 @@ static func play_effect(stream: AudioStream) -> void:
 	_instance._effect_player.play()
 
 
-static func play_ambiance_a(stream: AudioStream) -> void:
-	_instance._ambience_a_player.stream = stream
+static func play_ambiance(stream_a: AudioStream, stream_b: AudioStream) -> void:
+	_instance._ambience_a_player.stream = stream_a
 	_instance._ambience_a_player.play()
-
-
-static func play_ambiance_b(stream: AudioStream) -> void:
-	_instance._ambience_b_player.stream = stream
+	_instance._ambience_b_player.stream = stream_b
 	_instance._ambience_b_player.play()
 
 

@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://k2n0orq8v38q" path="res://engine/resources/utility_node/grabber.gd" id="13_tuktl"]
 [ext_resource type="Shader" uid="uid://dm184lu8cvpj0" path="res://engine/resources/shaders/direction_arrow.gdshader" id="14_27bf8"]
 [ext_resource type="Texture2D" uid="uid://cx3w4pgpiwi3p" path="res://assets/sprites/dir_arrow.png" id="14_ffohp"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="15_txm0q"]
 
 [sub_resource type="Curve" id="Curve_0u5ry"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -31,6 +32,13 @@ shader_parameter/run_time = 1.0
 shader_parameter/wait_time = 0.1
 shader_parameter/start_offset = -2.0
 shader_parameter/end_offset = 1.0
+
+[sub_resource type="Texture2D" id="Texture2D_3hk64"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("15_txm0q")
+name = "icons/monster8"
+metadata/_custom_type_script = "uid://jkalggo6fr21"
 
 [node name="Cell" type="Control" unique_id=1543365072]
 layout_mode = 3
@@ -169,3 +177,10 @@ material = SubResource("ShaderMaterial_6d8hb")
 position = Vector2(8, 8)
 texture = ExtResource("14_ffohp")
 offset = Vector2(9, 0)
+
+[node name="MonsterIcon" type="Sprite2D" parent="." unique_id=1935809968]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 0, 0, 1)
+texture = SubResource("Texture2D_3hk64")
+offset = Vector2(8, 8)

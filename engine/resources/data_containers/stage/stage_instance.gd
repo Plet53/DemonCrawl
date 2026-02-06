@@ -452,13 +452,25 @@ func _on_change_attribute(attribute: StringName, value: Variant) -> Variant:
 	return value
 
 
+func _on_lose(_source: Object) -> void:
+	var cells = get_stage().get_board().get_cells()
+	
+	cells.filter(func (cell: Cell):
+		return cell.get_aura() == null
+	).map(func (cell: Cell):
+		cell.get_aura_modulator().modulate = Color.RED
+	)
+	
+	cells.filter(func (cell: Cell):
+		return cell.get_data().is_hidden() && cell.get_data().is_occupied() && cell.get_data().get_object().get_name_id() == "object.monster"
+	).map(func (cell: Cell):
+		cell.show_monster_icon()
+	)
+
+
 func count_first_opened_cell() -> int:
 	get_quest().get_attributes().change_property.disconnect(_on_change_attribute)
 	return get_quest().get_attributes().cells_opened_since_mistake + 1
-
-
-func _on_lose(_source: Object):
-	pass
 
 
 ## Returns whether this [StageInstance] has been generated. If this is not the

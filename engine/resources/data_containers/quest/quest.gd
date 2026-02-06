@@ -135,6 +135,7 @@ func _set_current_stage(current_stage: StageInstanceBase) -> void:
 			#_current_stage.get_timer().second_passed.disconnect(EffectManager.propagate.bind(get_effects().stage_second_passed))
 			#_current_stage.get_status_timer().second_passed.disconnect(EffectManager.propagate.bind(get_effects().status_effect_second_passed))
 			
+			get_stats().get_effects().lose.disconnect(_current_stage._on_lose)
 			_current_stage.finished.disconnect(_on_stage_finished.bind(_current_stage))
 		#).call()
 	
@@ -150,6 +151,7 @@ func _set_current_stage(current_stage: StageInstanceBase) -> void:
 			#current_stage.get_timer().second_passed.connect(EffectManager.propagate.bind(get_effects().stage_second_passed))
 			#current_stage.get_status_timer().second_passed.connect(EffectManager.propagate.bind(get_effects().status_effect_second_passed))
 			
+			get_stats().get_effects().lose.connect(_current_stage._on_lose)
 			current_stage.finished.connect(_on_stage_finished.bind(_current_stage))
 		#).call()
 	
@@ -320,8 +322,8 @@ func _on_lose(source: Object) -> void:
 		if get_current_stage().get_stage().is_special():
 			popup.view_button.queue_free()
 		else:
-			var scene := get_current_stage().get_scene()
-			scene.get_background().set_color(Color.RED)
+			var stage := get_current_stage()
+			stage.get_scene().get_background().set_color(Color.RED)
 	
 	popup.cause = source.name # TODO
 	popup.popup()

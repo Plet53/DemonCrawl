@@ -21,8 +21,7 @@ static var ambience_volume: float = Eternal.create(1.0, "settings")
 			await ready
 		
 		AudioBus.play_music(value.get_stage().file.music)
-		AudioBus.play_ambiance_a(value.get_stage().file.ambience_a)
-		AudioBus.play_ambiance_b(value.get_stage().file.ambience_b)
+		AudioBus.play_ambiance(value.get_stage().file.ambience_a, value.get_stage().file.ambience_b)
 		
 		theme = value.get_stage().get_theme()
 # ==============================================================================
@@ -122,10 +121,6 @@ func cast(icon: Texture2D) -> CellData:
 	return cell.get_data() if cell else null
 
 
-func show_menu_return() -> void:
-	_menu_return_button.show_button()
-
-
 func _on_stage_completed() -> void:
 	stage_instance.get_timer().pause()
 	stage_instance.get_status_timer().pause()
@@ -138,21 +133,36 @@ func _on_board_stage_finished() -> void:
 	_on_stage_completed()
 
 
-func _on_menu_return_button_pressed() -> void:
-	_menu_return_button.hide()
-	
-	Quest.get_current().abandon()
-
-
 func _on_finish_button_pressed() -> void:
 	_finish_button.hide()
 	finish_pressed.emit()
+	AudioBus.stop_ambience()
 	
 	stage_instance.notify_finish_pressed()
 	
 	await _finish_popup.popup()
 	
 	stage_instance.finish()
+
+
+func show_menu_return() -> void:
+	_menu_return_button.show_button()
+
+
+func _on_lose(_source: Object) -> void:
+	get_board().get_cells().filter(func (cell: Cell):
+		return cell.get_data().is_hidden() && cell.get_object().get_name_id() == "object.monster"
+	).map(func (cell: Cell):
+		cell.show_monster_icon()
+	)
+	
+	# Prevent Interaction
+
+
+func _on_menu_return_button_pressed() -> void:
+	_menu_return_button.hide()
+	
+	Quest.get_current().abandon()
 
 
 static func get_instance() -> StageScene:
