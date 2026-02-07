@@ -52,8 +52,6 @@ func enable() -> void:
 	
 	if is_active():
 		get_quest().get_stage_effects().get_guaranteed_objects.connect(_get_guaranteed_objects)
-		get_inventory().get_effects().item_gain.connect(_on_item_gain)
-		get_inventory().get_effects().item_lose.connect(_on_item_lose)
 
 
 func disable() -> void:
@@ -61,8 +59,6 @@ func disable() -> void:
 	
 	if is_active():
 		get_quest().get_stage_effects().get_guaranteed_objects.disconnect(_get_guaranteed_objects)
-		get_inventory().get_effects().item_gain.disconnect(_on_item_gain)
-		get_inventory().get_effects().item_lose.connect(_on_item_lose)
 
 
 func _get_texture() -> Texture2D:
@@ -427,18 +423,6 @@ func life_lose(life: int, source: Object = self) -> void:
 ## Takes in an [Array][[CellObject]] and returns an [Array][[CellObject]].
 func _get_guaranteed_objects(input: Array[CellObject]) -> Array[CellObject]:
 	return input
-
-
-## Virtual Method to Allow an [Item] to react to a given [Item] being gained.
-## Takes in the [Item] being gained. Returns [true] if that item should be gained, or [false] if not.
-func _on_item_gain(_item: Item, should_gain: bool) -> bool:
-	return should_gain
-
-
-## Virtual Method to Allow an [Item] to react to a given [Item] being lost.
-## Takes in the [Item] being lost. Returns [true] if that item should be lost, or [false] if not.
-func _on_item_lose(_item: Item, should_lose: bool) -> bool:
-	return should_lose
 
 #endregion
 

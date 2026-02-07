@@ -106,8 +106,9 @@ func die(source: Object) -> void:
 ## Causes the player to immediately lose the quest. If the player has any revives,
 ## they will not be used to revive the player. See also [method die].
 func lose(source: Object) -> void:
-	if get_quest().has_current_stage() and get_quest().get_current_stage().has_scene():
-		get_quest().get_current_stage().get_scene().get_background().set_color(Color.RED)
+	if get_quest().has_current_stage() and not get_quest().get_current_stage_base().get_stage().is_special():
+			if get_quest().get_current_stage().has_scene():
+				get_quest().get_current_stage().get_scene().get_background().set_color(Color.RED)
 	
 	EffectManager.propagate(get_effects().lose, source)
 	EffectManager.propagate(get_effects().lost, source)
@@ -174,9 +175,10 @@ func can_afford(coins: int, source: Object) -> bool:
 
 
 func damage(amount: int, source: Object) -> int:
-	if get_quest().has_current_stage() and get_quest().get_current_stage().has_scene():
-		get_quest().get_current_stage().get_scene().get_background().flash_red()
-		get_quest().get_current_stage().get_board().get_camera().shake()
+	if get_quest().has_current_stage() and not get_quest().get_current_stage_base().get_stage().is_special():
+			if get_quest().get_current_stage().has_scene():
+				get_quest().get_current_stage().get_scene().get_background().flash_red()
+				get_quest().get_current_stage().get_board().get_camera().shake()
 	
 	amount = EffectManager.propagate_mutable(get_effects().take_damage, 0, amount, source)
 	EffectManager.propagate(get_effects().damage_taken, amount, source)

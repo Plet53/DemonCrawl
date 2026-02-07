@@ -58,6 +58,10 @@ func purchase(offer_idx: int) -> void:
 	offer.remove_child(item)
 	get_quest().get_inventory().item_gain(item)
 
+
+func _on_lose(_source: Object) -> void:
+	pass
+
 @warning_ignore_start("unused_signal")
 
 class ItemShopEffects extends EventBus:

@@ -319,7 +319,7 @@ func _on_lose(source: Object) -> void:
 	add_child(popup)
 	
 	if has_current_stage():
-		if get_current_stage().get_stage().is_special():
+		if get_current_stage_base().get_stage().is_special():
 			popup.view_button.queue_free()
 		else:
 			var stage := get_current_stage()
