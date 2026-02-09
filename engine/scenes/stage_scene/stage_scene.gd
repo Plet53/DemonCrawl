@@ -21,7 +21,7 @@ static var ambience_volume: float = Eternal.create(1.0, "settings")
 			await ready
 		
 		AudioBus.play_music(value.get_stage().file.music)
-		AudioBus.play_ambiance(value.get_stage().file.ambience_a, value.get_stage().file.ambience_b)
+		AudioBus.play_ambience(value.get_stage().file.ambience_a, value.get_stage().file.ambience_b)
 		
 		theme = value.get_stage().get_theme()
 # ==============================================================================
@@ -122,11 +122,10 @@ func cast(icon: Texture2D) -> CellData:
 
 
 func _on_stage_completed() -> void:
+	AudioBus.stop_music()
 	stage_instance.get_timer().pause()
 	stage_instance.get_status_timer().pause()
 	_finish_button.show_button()
-	
-	AudioBus.stop_music()
 
 
 func _on_board_stage_finished() -> void:

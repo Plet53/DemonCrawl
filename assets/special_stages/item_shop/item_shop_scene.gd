@@ -49,6 +49,10 @@ func _update() -> void:
 			frame.queue_free()
 
 
+func deselect() -> void:
+	Focus.unfocus()
+
+
 func _on_buy_button_pressed() -> void:
 	if not _selected_display:
 		return
@@ -63,4 +67,6 @@ func _on_buy_button_pressed() -> void:
 
 
 func _on_leave_button_pressed() -> void:
+	AudioBus.stop_ambience()
+	AudioBus.stop_music()
 	instance.finish()

@@ -20,6 +20,7 @@ func popup() -> void:
 	
 	_cause_label.text = cause_string
 	
+	AudioBus.stop_ambience()
 	AudioBus.play_music(GAME_OVER_AUDIO)
 	
 	_animation_player.play("popup_show")

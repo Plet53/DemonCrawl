@@ -48,6 +48,10 @@ func _create_scene() -> Node:
 	return scene
 
 
+func _on_lose(_source: Object) -> void:
+	Focus.unfocus()
+
+
 @abstract
 class ItemOfferBase extends ResourceNode:
 	func get_item() -> Item:

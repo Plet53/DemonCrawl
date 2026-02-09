@@ -4,9 +4,13 @@ class_name ItemShopInstance
 
 # ==============================================================================
 const SCENE := preload("res://assets/special_stages/item_shop/item_shop.tscn")
+const AMBIENCE := preload("res://assets/special_stages/item_shop/item_shop_ambience.ogg")
 # ==============================================================================
 
 func _ready() -> void:
+	AudioBus.play_music(load("res://assets/special_stages/item_shop/item_shop.ogg"))
+	AudioBus.play_ambience(AMBIENCE, AudioStream.new())
+	
 	if was_reloaded():
 		return
 	
@@ -60,7 +64,7 @@ func purchase(offer_idx: int) -> void:
 
 
 func _on_lose(_source: Object) -> void:
-	pass
+	_scene.deselect()
 
 @warning_ignore_start("unused_signal")
 
