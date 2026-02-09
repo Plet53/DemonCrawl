@@ -7,6 +7,12 @@ class_name StageSelect
 @onready var _quest_name_label: Label = %QuestNameLabel
 # ==============================================================================
 
+func _enter_tree() -> void:
+	get_quest().get_stats().get_effects().lose.connect(_on_lose)
+
+func _exit_tree() -> void:
+	get_quest().get_stats().get_effects().lose.disconnect(_on_lose)
+
 func _on_quest_changed() -> void:
 	if not is_node_ready():
 		await ready
@@ -44,6 +50,10 @@ func get_quest() -> Quest:
 
 func _on_abandon_button_pressed() -> void:
 	Quest.get_current().abandon()
+
+
+func _on_lose(_source: Object) -> void:
+	Focus.unfocus()
 
 
 func _on_back_to_menu_button_pressed() -> void:
