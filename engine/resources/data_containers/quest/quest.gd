@@ -281,6 +281,7 @@ func abandon() -> void:
 	get_tree().change_scene_to_file("res://engine/scenes/main_menu/main_menu.tscn")
 	#notify_unloaded()
 
+
 func pass_turn() -> void:
 	if has_current_stage():
 		EffectManager.propagate(get_current_stage().get_effects().turn)

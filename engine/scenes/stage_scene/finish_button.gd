@@ -15,5 +15,6 @@ func show_button() -> void:
 	show()
 	animation_player.play("grow_button")
 
+
 func _on_texture_button_pressed() -> void:
 	pressed.emit()

@@ -10,8 +10,10 @@ class_name StageSelect
 func _enter_tree() -> void:
 	get_quest().get_stats().get_effects().lose.connect(_on_lose)
 
+
 func _exit_tree() -> void:
 	get_quest().get_stats().get_effects().lose.disconnect(_on_lose)
+
 
 func _on_quest_changed() -> void:
 	if not is_node_ready():
