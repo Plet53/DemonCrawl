@@ -148,16 +148,6 @@ func show_menu_return() -> void:
 	_menu_return_button.show_button()
 
 
-func _on_lose(_source: Object) -> void:
-	get_board().get_cells().filter(func (cell: Cell):
-		return cell.get_data().is_hidden() && cell.get_object().get_name_id() == "object.monster"
-	).map(func (cell: Cell):
-		cell.show_monster_icon()
-	)
-	
-	# Prevent Interaction
-
-
 func _on_menu_return_button_pressed() -> void:
 	_menu_return_button.hide()
 	

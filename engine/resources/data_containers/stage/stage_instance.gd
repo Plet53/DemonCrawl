@@ -466,6 +466,8 @@ func _on_lose(_source: Object) -> void:
 	).map(func (cell: Cell):
 		cell.show_monster_icon()
 	)
+	
+	get_timer().pause()
 
 
 func count_first_opened_cell() -> int:
