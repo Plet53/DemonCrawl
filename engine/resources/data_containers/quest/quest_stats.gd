@@ -25,6 +25,7 @@ const REVIVE_TEXTURE: Texture2D = preload("res://assets/sprites/revive.png")
 	set(value):
 		coins = value
 		emit_changed()
+@export var losing := false
 # ==============================================================================
 var _dying := false
 # ==============================================================================
@@ -113,7 +114,7 @@ func lose(source: Object) -> void:
 	EffectManager.propagate(get_effects().lose, source)
 	EffectManager.propagate(get_effects().lost, source)
 	
-	# TODO
+	losing = true
 
 
 func revive() -> void:

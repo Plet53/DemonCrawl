@@ -8,11 +8,15 @@ const GAME_OVER_AUDIO: AudioStream = preload("res://assets/music/game_over.ogg")
 @onready var _animation_player = %AnimationPlayer
 # ==============================================================================
 @export var view_button: DCButton
+@export var restart_button: DCButton
 @export var cause: String = ""
 # ==============================================================================
 
 func popup() -> void:
 	show()
+	
+	if not Quest.get_current().can_restart():
+		restart_button.queue_free()
 	
 	var cause_string: String = load("res://assets/string_tables/game_over.tres").pick_random()
 	if cause_string.contains("{cause}"):

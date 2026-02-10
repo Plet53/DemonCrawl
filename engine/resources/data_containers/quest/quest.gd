@@ -197,7 +197,12 @@ func start() -> void:
 	started.emit()
 
 
-## Start a new quest with the same parameters as the current one.
+## Returns true if the current quest can be restarted.
+func can_restart() -> bool:
+	return true
+
+
+## Start a new quest with the same difficulty and file as the current one.
 func restart() -> void:
 	var fresh_quest := source_file.generate()
 	fresh_quest.source_difficulty = source_difficulty.duplicate()

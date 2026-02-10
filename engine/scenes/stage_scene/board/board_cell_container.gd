@@ -50,6 +50,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Engine.is_editor_hint():
 		return
 	
+	if stage_instance.get_quest().get_stats().losing:
+		return
+	
 	if _hovered_cell:
 		if event.is_action_pressed(&"interact"):
 			_pressed_cell = _hovered_cell
