@@ -2,12 +2,12 @@ extends Node
 class_name AudioBus
 
 # ==============================================================================
+static var _instance: AudioBus
+# ==============================================================================
 @onready var _music_player: AudioStreamPlayer = %MusicPlayer
 @onready var _effect_player: AudioStreamPlayer = %EffectPlayer
 @onready var _ambience_a_player: AudioStreamPlayer = %AmbienceAPlayer
 @onready var _ambience_b_player: AudioStreamPlayer = %AmbienceBPlayer
-# ==============================================================================
-static var _instance: AudioBus
 # ==============================================================================
 
 func _ready() -> void:
