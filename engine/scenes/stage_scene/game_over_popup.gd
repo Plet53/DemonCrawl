@@ -4,12 +4,12 @@ class_name GameOverPopup
 # ==============================================================================
 const GAME_OVER_AUDIO: AudioStream = preload("res://assets/music/game_over.ogg")
 # ==============================================================================
-@onready var _cause_label: Label = %CauseLabel
-@onready var _animation_player = %AnimationPlayer
-# ==============================================================================
 @export var view_button: DCButton
 @export var restart_button: DCButton
 @export var cause: String = ""
+# ==============================================================================
+@onready var _cause_label: Label = %CauseLabel
+@onready var _animation_player = %AnimationPlayer
 # ==============================================================================
 
 func popup() -> void:

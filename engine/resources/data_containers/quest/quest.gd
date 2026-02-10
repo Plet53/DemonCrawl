@@ -330,7 +330,7 @@ func _on_lose(source: Object) -> void:
 			var stage := get_current_stage()
 			stage.get_scene().get_background().set_color(Color.RED)
 	
-	popup.cause = source.name # TODO
+	popup.cause = source.get_annotation_title() # TODO
 	popup.popup()
 
 #endregion
