@@ -8,6 +8,9 @@ class_name StageSelect
 # ==============================================================================
 
 func _enter_tree() -> void:
+	if not is_node_ready():
+		await ready
+	
 	get_quest().get_stats().get_effects().lose.connect(_on_lose)
 
 

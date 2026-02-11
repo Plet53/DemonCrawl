@@ -27,6 +27,8 @@ class_name StageInstance
 @export var _flagless := true : get = is_flagless
 @export var _untouchable := true : get = is_untouchable
 
+@export var input_frozen := false
+
 #@export var _timer: StageTimer = null : get = get_timer
 #@export var _status_timer: StageTimer = null : get = get_status_timer
 
@@ -467,7 +469,11 @@ func _on_lose(_source: Object) -> void:
 		cell.show_monster_icon()
 	)
 	
+	for projectile in get_projectile_manager().get_projectiles():
+		projectile.clear()
+	
 	get_timer().pause()
+	input_frozen = true
 
 
 func count_first_opened_cell() -> int:

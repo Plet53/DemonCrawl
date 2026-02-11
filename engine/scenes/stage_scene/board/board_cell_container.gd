@@ -50,7 +50,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	if stage_instance.get_quest().get_stats().losing:
+	if stage_instance.input_frozen:
 		return
 	
 	if _hovered_cell:
