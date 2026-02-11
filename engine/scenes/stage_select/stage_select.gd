@@ -15,7 +15,8 @@ func _enter_tree() -> void:
 
 
 func _exit_tree() -> void:
-	get_quest().get_stats().get_effects().lose.disconnect(_on_lose)
+	if Quest.get_current():
+		get_quest().get_stats().get_effects().lose.disconnect(_on_lose)
 
 
 func _on_quest_changed() -> void:
