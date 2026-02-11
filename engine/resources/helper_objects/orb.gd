@@ -39,6 +39,10 @@ func _create_sprite() -> OrbSprite:
 
 
 func notify_clicked() -> void:
+	if Quest.get_current().get_current_stage():
+		if Quest.get_current().get_current_stage().input_frozen:
+			return
+	
 	var handled := _clicked()
 	
 	if get_quest().has_current_stage():
