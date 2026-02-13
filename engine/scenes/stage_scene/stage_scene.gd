@@ -4,9 +4,6 @@ class_name StageScene
 
 # ==============================================================================
 static var _instance: StageScene = null : get = get_instance
-
-static var music_volume: float = Eternal.create(1.0, "settings")
-static var ambience_volume: float = Eternal.create(1.0, "settings")
 # ==============================================================================
 @export var stage_instance: StageInstance = null :
 	set(value):
@@ -55,12 +52,6 @@ func _ready() -> void:
 		register_projectile(projectile)
 	
 	_status_effect_list.manager = Quest.get_current().get_status_manager()
-	
-	AudioBus.set_volumes([
-		StageScene.music_volume,
-		1.0, # TODO: Sound Effects
-		StageScene.ambience_volume
-	])
 
 
 ## Returns the scene's [StageBackground] instance.

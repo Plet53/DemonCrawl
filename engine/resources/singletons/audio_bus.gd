@@ -3,22 +3,27 @@ class_name AudioBus
 
 # ==============================================================================
 static var _instance: AudioBus
+
+static var master_volume: float = Eternal.create(1.0, "settings")
+static var music_volume: float = Eternal.create(1.0, "settings")
+static var effect_volume: float = Eternal.create(1.0, "settings")
+static var ambience_volume: float = Eternal.create(1.0, "settings")
 # ==============================================================================
 @onready var _music_player: AudioStreamPlayer = %MusicPlayer
-@onready var _effect_player: AudioStreamPlayer = %EffectPlayer
 @onready var _ambience_a_player: AudioStreamPlayer = %AmbienceAPlayer
 @onready var _ambience_b_player: AudioStreamPlayer = %AmbienceBPlayer
 # ==============================================================================
 
 func _ready() -> void:
 	_instance = self
+	update_volumes()
 
 
-static func set_volumes(volumes: Array[float]) -> void:
-	_instance._music_player.volume_linear = volumes[0]
-	_instance._effect_player.volume_linear = volumes[1]
-	_instance._ambience_a_player.volume_linear = volumes[2]
-	_instance._ambience_b_player.volume_linear = volumes[2]
+static func update_volumes() -> void:
+	AudioServer.set_bus_volume_linear(0, master_volume)
+	AudioServer.set_bus_volume_linear(1, music_volume)
+	AudioServer.set_bus_volume_linear(2, effect_volume)
+	AudioServer.set_bus_volume_linear(3, ambience_volume)
 
 
 static func play_music(stream: AudioStream) -> void:
@@ -30,9 +35,15 @@ static func stop_music() -> void:
 	_instance._music_player.stop()
 
 
-static func play_effect(stream: AudioStream) -> void:
-	_instance._effect_player.stream = stream
-	_instance._effect_player.play()
+static func play_effect(stream: AudioStream) -> AudioStreamPlayer:
+	var player := AudioStreamPlayer.new()
+	player.name = "EffectPlayer"
+	_instance.add_child(player)
+	player.bus = &"SoundEffects"
+	player.stream = stream
+	player.play()
+	player.finished.connect(player.queue_free)
+	return player
 
 
 static func play_ambience(stream_a: AudioStream, stream_b: AudioStream) -> void:
