@@ -15,6 +15,7 @@ var _selected_display: ItemShopOfferDisplay
 # ==============================================================================
 @onready var _offers_container: HBoxContainer = %OffersContainer
 @onready var _buy_button: DCButton = %BuyButton
+@onready var _background: StageBackground = %Background
 # ==============================================================================
 
 func _update() -> void:
@@ -51,6 +52,10 @@ func _update() -> void:
 
 func deselect() -> void:
 	Focus.unfocus()
+
+
+func get_background() -> StageBackground:
+	return _background
 
 
 func _on_buy_button_pressed() -> void:

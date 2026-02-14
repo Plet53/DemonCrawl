@@ -204,7 +204,7 @@ func _generate_monster_name() -> String:
 	return file.monster_name_pool.pick_random()
 
 
-func _notify_damaged() -> void:
+func _damage_taken() -> void:
 	get_scene().get_background().flash_red()
 	get_board().get_camera().shake()
 
