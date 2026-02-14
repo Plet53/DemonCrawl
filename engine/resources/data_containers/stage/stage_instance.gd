@@ -27,13 +27,12 @@ class_name StageInstance
 @export var _flagless := true : get = is_flagless
 @export var _untouchable := true : get = is_untouchable
 
-@export var input_frozen := false
-
 #@export var _timer: StageTimer = null : get = get_timer
 #@export var _status_timer: StageTimer = null : get = get_status_timer
 
 #@export var _projectile_manager: ProjectileManager = null : get = get_projectile_manager
 # ==============================================================================
+var input_frozen := false
 #var _immunity := Immunity.create_immunity_list() : get = get_immunity
 # ==============================================================================
 signal finish_pressed()
@@ -62,7 +61,7 @@ func _ready() -> void:
 		get_grid().add_child(data)
 	
 	get_quest().get_attributes().change_property.connect(_on_change_attribute)
-	get_quest().get_stats().get_effects().lose.connect(_on_lose)
+	get_quest().get_stats().get_effects().lost.connect(_on_lost)
 	
 	emit_changed()
 
@@ -454,20 +453,15 @@ func _on_change_attribute(attribute: StringName, value: Variant) -> Variant:
 	return value
 
 
-func _on_lose(_source: Object) -> void:
-	var cells = get_stage().get_board().get_cells()
+func _on_lost(_source: Object) -> void:
+	var cells := get_stage().get_board().get_cells()
 	
-	cells.filter(func (cell: Cell):
-		return cell.get_aura() == null
-	).map(func (cell: Cell):
-		cell.get_aura_modulator().modulate = Color.RED
-	)
-	
-	cells.filter(func (cell: Cell):
-		return cell.get_data().is_hidden() && cell.get_data().is_occupied() && cell.get_data().get_object().get_name_id() == "object.monster"
-	).map(func (cell: Cell):
-		cell.show_monster_icon()
-	)
+	for cell in cells:
+		if cell.get_aura() == null:
+			cell.get_aura_modulator().modulate = Color.RED
+		
+		if cell.get_data().is_hidden() && cell.get_data().is_occupied() && cell.get_data().get_object().get_name_id() == "object.monster":
+			cell.show_monster_icon()
 	
 	for projectile in get_projectile_manager().get_projectiles():
 		projectile.clear()

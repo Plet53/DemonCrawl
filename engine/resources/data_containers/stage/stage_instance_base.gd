@@ -92,8 +92,8 @@ func _get_effects() -> Script:
 	return StageBaseEffects
 
 
-## Virtual method. Called when the player loses for any reason.
-func _on_lose(_source: Object) -> void:
+## Virtual method. Called when the player has lost for any reason.
+func _on_lost(_source: Object) -> void:
 	pass
 
 

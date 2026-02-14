@@ -68,12 +68,12 @@ func _ready() -> void:
 	get_event_bus_manager()
 	
 	get_stage_effects().get_guaranteed_objects.connect(source_difficulty.get_guaranteed_objects)
-	get_stats().get_effects().lose.connect(_on_lose)
+	get_stats().get_effects().lost.connect(_on_lost)
 
 
 func _exit_tree() -> void:
 	get_stage_effects().get_guaranteed_objects.disconnect(source_difficulty.get_guaranteed_objects)
-	get_stats().get_effects().lose.disconnect(_on_lose)
+	get_stats().get_effects().lost.disconnect(_on_lost)
 
 #endregion
 
@@ -135,7 +135,6 @@ func _set_current_stage(current_stage: StageInstanceBase) -> void:
 			#_current_stage.get_timer().second_passed.disconnect(EffectManager.propagate.bind(get_effects().stage_second_passed))
 			#_current_stage.get_status_timer().second_passed.disconnect(EffectManager.propagate.bind(get_effects().status_effect_second_passed))
 			
-			get_stats().get_effects().lose.disconnect(_current_stage._on_lose)
 			_current_stage.finished.disconnect(_on_stage_finished.bind(_current_stage))
 		#).call()
 	
@@ -151,7 +150,6 @@ func _set_current_stage(current_stage: StageInstanceBase) -> void:
 			#current_stage.get_timer().second_passed.connect(EffectManager.propagate.bind(get_effects().stage_second_passed))
 			#current_stage.get_status_timer().second_passed.connect(EffectManager.propagate.bind(get_effects().status_effect_second_passed))
 			
-			get_stats().get_effects().lose.connect(_current_stage._on_lose)
 			current_stage.finished.connect(_on_stage_finished.bind(_current_stage))
 		#).call()
 	
@@ -205,7 +203,7 @@ func can_restart() -> bool:
 ## Start a new quest with the same difficulty and file as the current one.
 func restart() -> void:
 	var fresh_quest := source_file.generate()
-	fresh_quest.source_difficulty = source_difficulty.duplicate()
+	fresh_quest.source_difficulty = source_difficulty
 	fresh_quest.set_as_current()
 	
 	source_difficulty.apply_starting_values(fresh_quest)
@@ -320,9 +318,9 @@ func _on_stage_finished(stage_instance: StageInstanceBase) -> void:
 	
 	get_tree().change_scene_to_file("res://engine/scenes/stage_select/stage_select.tscn")
 
-func _on_lose(source: Object) -> void:
+func _on_lost(source: Object) -> void:
 	var popup := GAME_OVER_POPUP.instantiate()
-	add_child(popup)
+	get_tree().root.add_child(popup)
 	
 	if has_current_stage():
 		if get_current_stage_base().get_stage().is_special():

@@ -22,3 +22,7 @@ func _get_small_icon() -> Texture2D:
 
 func _create_instance() -> BazaarInstance:
 	return BazaarInstance.new()
+
+
+func _notify_damaged() -> void:
+	pass

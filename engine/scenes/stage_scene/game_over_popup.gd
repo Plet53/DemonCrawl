@@ -18,11 +18,7 @@ func popup() -> void:
 	if not Quest.get_current().can_restart():
 		restart_button.queue_free()
 	
-	var cause_string: String = load("res://assets/string_tables/game_over.tres").pick_random()
-	if cause_string.contains("{cause}"):
-		cause_string = cause_string.format({"cause": cause.to_upper()})
-	
-	_cause_label.text = cause_string
+	_cause_label.text = load("res://assets/string_tables/game_over.tres").pick_random().format({ "cause": cause.to_upper() })
 	
 	AudioBus.stop_ambience()
 	AudioBus.play_music(GAME_OVER_AUDIO)
@@ -39,10 +35,12 @@ func _on_view_board_pressed() -> void:
 	
 	Quest.get_current().get_current_stage().get_scene().show_menu_return()
 	hide()
+	queue_free()
 
 
 func _on_restart_pressed() -> void:
 	Quest.get_current().restart()
+	queue_free()
 
 
 func _on_return_to_menu_pressed() -> void:
@@ -53,3 +51,4 @@ func _on_return_to_menu_pressed() -> void:
 	hide()
 	
 	Quest.get_current().abandon()
+	queue_free()

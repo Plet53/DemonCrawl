@@ -25,7 +25,7 @@ const REVIVE_TEXTURE: Texture2D = preload("res://assets/sprites/revive.png")
 	set(value):
 		coins = value
 		emit_changed()
-@export var losing := false
+var losing := false
 # ==============================================================================
 var _dying := false
 # ==============================================================================
@@ -107,14 +107,18 @@ func die(source: Object) -> void:
 ## Causes the player to immediately lose the quest. If the player has any revives,
 ## they will not be used to revive the player. See also [method die].
 func lose(source: Object) -> void:
+	var success: bool = EffectManager.propagate_mutable(get_effects().lose, 1, source, true)
+	if not success:
+		return
+	
+	EffectManager.propagate(get_effects().lost, source)
+	
 	if get_quest().has_current_stage() and not get_quest().get_current_stage_base().get_stage().is_special():
 			if get_quest().get_current_stage().has_scene():
 				get_quest().get_current_stage().get_scene().get_background().set_color(Color.RED)
 	
-	EffectManager.propagate(get_effects().lose, source)
-	EffectManager.propagate(get_effects().lost, source)
-	
 	losing = true
+
 
 
 func revive() -> void:
@@ -176,10 +180,8 @@ func can_afford(coins: int, source: Object) -> bool:
 
 
 func damage(amount: int, source: Object) -> int:
-	if get_quest().has_current_stage() and not get_quest().get_current_stage_base().get_stage().is_special():
-			if get_quest().get_current_stage().has_scene():
-				get_quest().get_current_stage().get_scene().get_background().flash_red()
-				get_quest().get_current_stage().get_board().get_camera().shake()
+	if get_quest().has_current_stage():
+		get_quest().get_current_stage_base().get_stage().notify_damaged()
 	
 	amount = EffectManager.propagate_mutable(get_effects().take_damage, 0, amount, source)
 	EffectManager.propagate(get_effects().damage_taken, amount, source)
@@ -228,7 +230,7 @@ class StatsEffects extends EventBus:
 	signal die(source: Object)
 	signal died(source: Object)
 	
-	signal lose(source: Object)
+	signal lose(source: Object, success: bool)
 	signal lost(source: Object)
 	
 	signal revive(source: Object)

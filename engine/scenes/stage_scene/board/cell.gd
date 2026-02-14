@@ -17,7 +17,7 @@ var _board_position := Vector2i.ZERO : get = get_board_position
 @onready var _text_particles: TextParticles = %TextParticles
 @onready var _texture_shatter: TextureShatter = %TextureShatter : get = get_texture_shatter
 @onready var _direction_arrow: Sprite2D = %DirectionArrow
-@onready var _monster_icon: Sprite2D = %MonsterIcon
+@onready var _monster_icon: TextureRect = %MonsterIcon
 # ==============================================================================
 signal mode_changed(mode: Mode) ## Emitted when the [enum Mode] (see [method get_mode]) of this [Cell] changes.
 signal value_changed(value: int) ## Emitted when the value (see [method get_value]) of this [Cell] changes.
