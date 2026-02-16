@@ -325,10 +325,8 @@ func _on_lost(source: Object) -> void:
 	if has_current_stage():
 		if get_current_stage_base().get_stage().is_special():
 			popup.view_button.queue_free()
-		else:
-			var stage := get_current_stage()
-			stage.get_scene().get_background().set_color(Color.RED)
 	
+	popup.quest = self
 	popup.cause = source.get_annotation_title() # TODO
 	popup.popup()
 

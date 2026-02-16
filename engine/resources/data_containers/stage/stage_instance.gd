@@ -466,6 +466,8 @@ func _on_lost(_source: Object) -> void:
 	for projectile in get_projectile_manager().get_projectiles():
 		projectile.clear()
 	
+	get_scene().get_background().set_color(Color.RED)
+	
 	get_timer().pause()
 	input_frozen = true
 

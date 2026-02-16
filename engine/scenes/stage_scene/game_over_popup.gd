@@ -8,6 +8,8 @@ const GAME_OVER_AUDIO: AudioStream = preload("res://assets/music/game_over.ogg")
 @export var restart_button: DCButton
 @export var cause: String = ""
 # ==============================================================================
+var quest: Quest
+# ==============================================================================
 @onready var _cause_label: Label = %CauseLabel
 @onready var _animation_player = %AnimationPlayer
 # ==============================================================================
@@ -15,7 +17,7 @@ const GAME_OVER_AUDIO: AudioStream = preload("res://assets/music/game_over.ogg")
 func popup() -> void:
 	show()
 	
-	if not Quest.get_current().can_restart():
+	if not quest.can_restart():
 		restart_button.queue_free()
 	
 	_cause_label.text = load("res://assets/string_tables/game_over.tres").pick_random().format({ "cause": cause.to_upper() })
@@ -33,13 +35,13 @@ func _on_view_board_pressed() -> void:
 	
 	await _animation_player.animation_finished
 	
-	Quest.get_current().get_current_stage().get_scene().show_menu_return()
+	quest.get_current_stage().get_scene().show_menu_return()
 	hide()
 	queue_free()
 
 
 func _on_restart_pressed() -> void:
-	Quest.get_current().restart()
+	quest.restart()
 	queue_free()
 
 
@@ -50,5 +52,5 @@ func _on_return_to_menu_pressed() -> void:
 	
 	hide()
 	
-	Quest.get_current().abandon()
+	quest.abandon()
 	queue_free()
