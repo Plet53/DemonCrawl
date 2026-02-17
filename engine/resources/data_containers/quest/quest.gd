@@ -213,9 +213,6 @@ func restart() -> void:
 	fresh_quest.start()
 	
 	Eternity.save()
-	
-	get_tree().change_scene_to_file("res://engine/scenes/stage_select/stage_select.tscn")
-
 
 
 ## Unlocks the next stage of the quest, starting at [param stage].
@@ -267,7 +264,7 @@ func finish() -> void:
 	#notify_unloaded()
 
 
-## Destroys this quest.
+## Destroys this quest, exits to the main menu.
 func abandon() -> void:
 	lost.emit()
 	
@@ -320,15 +317,20 @@ func _on_stage_finished(stage_instance: StageInstanceBase) -> void:
 
 func _on_lost(source: Object) -> void:
 	var popup := GAME_OVER_POPUP.instantiate()
+	popup.quest = self
 	get_tree().root.add_child(popup)
+	get_tree().root.remove_child(self)
 	
 	if has_current_stage():
 		if get_current_stage_base().get_stage().is_special():
 			popup.view_button.queue_free()
 	
-	popup.quest = self
 	popup.cause = source.get_annotation_title() # TODO
 	popup.popup()
+	
+	Quest.clear_current()
+	
+	Eternity.save()
 
 #endregion
 

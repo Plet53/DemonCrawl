@@ -142,7 +142,9 @@ func show_menu_return() -> void:
 func _on_menu_return_button_pressed() -> void:
 	_menu_return_button.hide()
 	
-	Quest.get_current().abandon()
+	stage_instance.get_quest().queue_free()
+	
+	get_tree().change_scene_to_file("res://engine/scenes/main_menu/main_menu.tscn")
 
 
 static func get_instance() -> StageScene:

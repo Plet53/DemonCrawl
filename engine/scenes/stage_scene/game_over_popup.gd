@@ -36,12 +36,17 @@ func _on_view_board_pressed() -> void:
 	await _animation_player.animation_finished
 	
 	quest.get_current_stage().get_scene().show_menu_return()
+	
 	hide()
 	queue_free()
 
 
 func _on_restart_pressed() -> void:
 	quest.restart()
+	
+	get_tree().change_scene_to_file("res://engine/scenes/stage_select/stage_select.tscn")
+	
+	quest.queue_free()
 	queue_free()
 
 
@@ -52,5 +57,7 @@ func _on_return_to_menu_pressed() -> void:
 	
 	hide()
 	
-	quest.abandon()
+	get_tree().change_scene_to_file("res://engine/scenes/main_menu/main_menu.tscn")
+	
+	quest.queue_free()
 	queue_free()
