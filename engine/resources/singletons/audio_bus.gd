@@ -4,10 +4,22 @@ class_name AudioBus
 # ==============================================================================
 static var _instance: AudioBus
 
-static var master_volume: float = Eternal.create(1.0, "settings")
-static var music_volume: float = Eternal.create(1.0, "settings")
-static var effect_volume: float = Eternal.create(1.0, "settings")
-static var ambience_volume: float = Eternal.create(1.0, "settings")
+static var master_volume: float = Eternal.create(1.0, "settings") :
+	set(value):
+		master_volume = value
+		AudioServer.set_bus_volume_linear(0, value)
+static var music_volume: float = Eternal.create(1.0, "settings") :
+	set(value):
+		music_volume = value
+		AudioServer.set_bus_volume_linear(1, value)
+static var effect_volume: float = Eternal.create(1.0, "settings") :
+	set(value):
+		effect_volume = value
+		AudioServer.set_bus_volume_linear(2, value)
+static var ambience_volume: float = Eternal.create(1.0, "settings") :
+	set(value):
+		ambience_volume = value
+		AudioServer.set_bus_volume_linear(3, value)
 # ==============================================================================
 @onready var _music_player: AudioStreamPlayer = %MusicPlayer
 @onready var _ambience_a_player: AudioStreamPlayer = %AmbienceAPlayer
@@ -16,14 +28,6 @@ static var ambience_volume: float = Eternal.create(1.0, "settings")
 
 func _ready() -> void:
 	_instance = self
-	update_volumes()
-
-
-static func update_volumes() -> void:
-	AudioServer.set_bus_volume_linear(0, master_volume)
-	AudioServer.set_bus_volume_linear(1, music_volume)
-	AudioServer.set_bus_volume_linear(2, effect_volume)
-	AudioServer.set_bus_volume_linear(3, ambience_volume)
 
 
 static func play_music(stream: AudioStream) -> void:

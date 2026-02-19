@@ -460,7 +460,7 @@ func _on_lost(_source: Object) -> void:
 		if cell.get_aura() == null:
 			cell.get_aura_modulator().modulate = Color.RED
 		
-		if cell.get_data().is_hidden() && cell.get_data().is_occupied() && cell.get_data().get_object().get_name_id() == "object.monster":
+		if cell.get_data().is_hidden() && cell.get_data().is_occupied() && cell.get_data().has_monster():
 			cell.show_monster_icon()
 	
 	for projectile in get_projectile_manager().get_projectiles():
